@@ -1,0 +1,43 @@
+
+import Image from 'next/image';
+import { greatVibes } from "@/app/font";
+
+
+export const Hero = () => {
+    return (
+        <section className="relative z-10">
+            <div className="relative min-h-screen flex flex-col items-center justify-center text-center overflow-hidden">
+                <Image src="/wisteria1.jpg" alt="bg_front" fill priority className="object-top object-cover z-0 pointer-events-none select-none"/>
+                <div className="relative z-10 bg-white/10 backdrop-blur-md rounded-xl px-4 sm:px-6 md:px-10 py-6 sm:py-8 shadow-lg max-w-md sm:max-w-lg md:max-w-xl w-full mx-4 sm:mx-auto fade-in-up">
+                    <div className="flex flex-col gap-y-4">
+                        <p className="text-base font-semibold mb-4 sm:text-lg lg:text-2xl text-black">
+                            Hello, We Are Getting Married
+                        </p>
+                        <h1 className={`${greatVibes.className} text-5xl sm:text-6xl lg:text-7xl font-bold bg-gradient-to-r text-[#FFDE57] font-fleur bg-clip-text leading-tight`}>
+                            Nama Pengantin
+                        </h1>
+                        <h3 className={`${greatVibes.className} text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r text-[#FFDE57] bg-clip-text`}>
+                            and
+                        </h3>
+                        <h1 className={`${greatVibes.className} text-5xl sm:text-6xl lg:text-7xl font-bold bg-gradient-to-r text-[#FFDE57] bg-clip-text leading-tight`}>
+                            Nama Pengantin
+                        </h1>
+                        <p className="text-base sm:text-lg lg:text-xl font-medium mt-4 text-black">
+                            Saturday, Jan 1, 2025
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-[0]">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                    <path
+                    fill="#FFEBF1"
+                    fillOpacity="1"
+                    d="M0,160L48,170.7C96,181,192,203,288,224C384,245,480,267,576,261.3C672,256,768,224,864,229.3C960,235,1056,277,1152,293.3C1248,309,1344,299,1392,293.3L1440,288L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+                    ></path>
+                </svg>
+            </div>
+        </section>
+    )
+}
