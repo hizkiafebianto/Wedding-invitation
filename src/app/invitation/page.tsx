@@ -3,6 +3,7 @@
 import { Alquran } from "@/components/alquran";
 import { BrideGroom } from "@/components/bride-groom";
 import { Countdown } from "@/components/countdown";
+import { FormRSVP } from "@/components/form-rsvp";
 import { Gallery } from "@/components/gallery";
 import { Gift } from "@/components/gift";
 import { Hero } from "@/components/hero";
@@ -22,6 +23,7 @@ export default function InvitationPage() {
         <Story />
         <Quote />
         <Gift />
+        <FormRSVP />
     </div>
   );
 }

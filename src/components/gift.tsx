@@ -62,7 +62,7 @@ export const Gift = () => {
 
                                 <Button
                                     variant="outline"
-                                    onClick={() => {}}
+                                    onClick={() => handleCopy("1234567890", "BCA")}
                                     className="cursor-pointer"
                                 >
                                     {copied === "BCA" ? "Disalin" : "Salin Nomor"}
