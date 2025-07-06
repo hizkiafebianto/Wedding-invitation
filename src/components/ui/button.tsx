@@ -20,7 +20,7 @@ const buttonVariants = cva(
         ghost:
           "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
         link: "text-primary underline-offset-4 hover:underline",
-        pink: "animate-shrink-loop transition-transform cursor-pointer bg-[#FFDE57] text-black px-6 py-3 rounded-lg"
+        pink: "animate-shrink-loop transition-transform cursor-pointer bg-[#FBBDD0] text-black px-6 py-3 rounded-lg"
       },
       size: {
         default: "h-9 px-4 py-2 has-[>svg]:px-3",

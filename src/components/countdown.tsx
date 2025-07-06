@@ -2,9 +2,9 @@ import { greatVibes } from "@/app/font";
 
 export const Countdown = () => {
     return (
-        <section>
+        <section data-aos="fade-up">
             <div className="bg-[#FFEBF1] py-12 px-4 text-center text-gray-800">
-                <h1 className={`${greatVibes.className} text-5xl lg:text-6xl font-fleur mb-12`}>
+                <h1 className={`${greatVibes.className} text-5xl lg:text-6xl font-fleur mb-12 mt-8`}>
                     Countdown
                 </h1>
 

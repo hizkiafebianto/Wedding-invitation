@@ -5,7 +5,10 @@ import { greatVibes } from "@/app/font";
 
 export const Hero = () => {
     return (
-        <section className="relative z-10">
+        <section 
+            className="relative z-10"
+            data-aos="fade-down"   
+        >
             <div className="relative min-h-screen flex flex-col items-center justify-center text-center overflow-hidden">
                 <Image src="/wisteria1.jpg" alt="bg_front" fill priority className="object-top object-cover z-0 pointer-events-none select-none"/>
                 <div className="relative z-10 bg-white/10 backdrop-blur-md rounded-xl px-4 sm:px-6 md:px-10 py-6 sm:py-8 shadow-lg max-w-md sm:max-w-lg md:max-w-xl w-full mx-4 sm:mx-auto fade-in-up">
@@ -29,7 +32,7 @@ export const Hero = () => {
                 </div>
             </div>
 
-            <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-[0]">
+            <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-[0] -mb-1">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
                     <path
                     fill="#FFEBF1"

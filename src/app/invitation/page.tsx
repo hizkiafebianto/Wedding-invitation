@@ -3,7 +3,12 @@
 import { Alquran } from "@/components/alquran";
 import { BrideGroom } from "@/components/bride-groom";
 import { Countdown } from "@/components/countdown";
+import { Gallery } from "@/components/gallery";
+import { Gift } from "@/components/gift";
 import { Hero } from "@/components/hero";
+import { Quote } from "@/components/quote";
+import { Rounddown } from "@/components/roundown";
+import { Story } from "@/components/story";
 
 export default function InvitationPage() {
   return (
@@ -12,6 +17,11 @@ export default function InvitationPage() {
         <Countdown />
         <Alquran />
         <BrideGroom />
+        <Rounddown />
+        <Gallery />
+        <Story />
+        <Quote />
+        <Gift />
     </div>
   );
 }

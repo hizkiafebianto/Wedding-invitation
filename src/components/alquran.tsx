@@ -15,7 +15,7 @@ export const Alquran = () => {
             })
     }, [])
 
-    if (!ayat) return <p className="text-center">Loading ayat...</p>;
+    if (!ayat) return <p className="text-center bg-[#FFEBF1]"></p>;
 
     return (
         <section className="bg-[#FFEBF1] py-16 px-4 sm:px-6 lg:px-8 text-gray-800 text-center">
@@ -29,7 +29,7 @@ export const Alquran = () => {
                             {ayat.teksArab}
                         </p>
 
-                        <p className="mt-4 text-sm md:text-base lg:text-lg italic text-gray-600">
+                        <p className="mt-4 text-sm md:text-base lg:text-base italic text-gray-600">
                             {ayat.teksIndonesia}
                         </p>
                     </>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
+import { AOSInit } from "@/components/aos-init";
 
 // Import Poppins dan set ke CSS variable
 const poppins = Poppins({
@@ -22,6 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${poppins.variable} font-poppins antialiased`}>
+        <AOSInit />
         {children}
       </body>
     </html>
