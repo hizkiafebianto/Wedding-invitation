@@ -1,7 +1,20 @@
-import { greatVibes } from "@/app/font"
-import Image from "next/image"
-import { Button } from "./ui/button"
-import { useState } from "react"
+import { greatVibes } from "@/app/font";
+import Image from "next/image";
+import { Button } from "./ui/button";
+import { useState } from "react";
+import { motion, Variants } from "framer-motion";
+
+const fadeUp: Variants = {
+    hidden: { opacity: 0, y: 30 },
+    show: {
+        opacity: 1,
+        y: 0,
+        transition: {
+        duration: 0.6,
+        ease: "easeOut",
+        },
+    },
+}
 
 export const Gift = () => {
     const [copied, setCopied] = useState<string | null>(null)
@@ -15,18 +28,36 @@ export const Gift = () => {
     return (
         <section className="bg-[#FFEBF1] py-12 px-4 text-center text-gray-800">
             <div className="max-w-4xl mx-auto px-4">
-                <h1 className={`${greatVibes.className} text-5xl lg:text-6xl font-fleur mb-8`}>
+                <motion.h1 
+                    className={`${greatVibes.className} text-5xl lg:text-6xl font-fleur mb-8`}
+                    variants={fadeUp}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true, amount: 0.3 }}
+                >
                     Wedding Gift
-                </h1>
+                </motion.h1>
 
-                <p className="max-w-4xl mx-auto mb-12 text-lg">
+                <motion.p 
+                    className="max-w-4xl mx-auto mb-12 text-lg"
+                    variants={fadeUp}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true, amount: 0.3 }}
+                >
                     Doa restu Anda merupakan karunia yang sangat berarti bagi kami. Jika ingin memberikan tanda kasih, dapat melalui informasi di bawah ini.
-                </p>
+                </motion.p>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
 
                     {/* QRIS */}
-                    <div className="bg-[#FBBDD0] backdrop-blur-md p-6 rounded-xl shadow-xl border border-white/20">
+                    <motion.div 
+                        className="bg-[#FBBDD0] backdrop-blur-md p-6 rounded-xl shadow-xl border border-white/20"
+                        variants={fadeUp}
+                        initial="hidden"
+                        whileInView="show"
+                        viewport={{ once: true, amount: 0.3 }}
+                    >
                         <h3 className="text-xl font-semibold text-pink-800 mb-4">
                             Scan QRIS
                         </h3>
@@ -43,10 +74,16 @@ export const Gift = () => {
                         <p className="text-sm text-gray-600 mt-4 italic">
                             Scan menggunakan aplikasi e-wallet favorit Anda
                         </p>
-                    </div>
+                    </motion.div>
 
                     {/* Rekening */}
-                    <div className="bg-[#FBBDD0] backdrop-blur-md p-6 rounded-xl shadow-xl border border-white/20 text-left flex flex-col justify-between">
+                    <motion.div 
+                        className="bg-[#FBBDD0] backdrop-blur-md p-6 rounded-xl shadow-xl border border-white/20 text-left flex flex-col justify-between"
+                        variants={fadeUp}
+                        initial="hidden"
+                        whileInView="show"
+                        viewport={{ once: true, amount: 0.3 }}
+                    >
                         <div>
                             <h3 className="text-xl font-semibold text-pink-800 mb-4">
                                 Transfer Rekening
@@ -69,7 +106,7 @@ export const Gift = () => {
                                 </Button>
                             </div>
                         </div>
-                    </div>
+                    </motion.div>
                 </div>
             </div>
         </section>

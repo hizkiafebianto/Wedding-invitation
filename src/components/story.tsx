@@ -73,7 +73,7 @@ export const Story = () => {
                         viewport={{ once: true, amount: 0.3 }}
                     >
                         {stories.map((story, i) => (
-                            <>
+                            
                                 <motion.div
                                     variants={fadeUp}
                                     initial="hidden"
@@ -127,7 +127,7 @@ export const Story = () => {
                                         </motion.p>
                                     </div>
                                 </motion.div>
-                            </>
+                            
                         ))}
                     </motion.div>
                 </div>

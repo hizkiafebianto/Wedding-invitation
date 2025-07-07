@@ -5,6 +5,19 @@ import { Textarea } from "./ui/textarea";
 import { Label } from "./ui/label";
 import { useState } from "react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
+import { motion, Variants } from "framer-motion";
+
+const fadeUp: Variants = {
+    hidden: { opacity: 0, y: 30 },
+    show: {
+        opacity: 1,
+        y: 0,
+        transition: {
+        duration: 0.6,
+        ease: "easeOut",
+        },
+    },
+}
 
 export const FormRSVP = () => {
     const [form, setForm] = useState({
@@ -34,21 +47,37 @@ export const FormRSVP = () => {
     return (
         <section className="bg-[#FFEBF1] py-12 px-4 text-center text-gray-800">
             <div className="max-w-4xl mx-auto px-4">
-                <h1 className={`${greatVibes.className} text-5xl lg:text-6xl font-fleur mb-8`}>
+                <motion.h1 
+                    className={`${greatVibes.className} text-5xl lg:text-6xl font-fleur mb-8`}
+                    variants={fadeUp}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true, amount: 0.3 }}
+                >
                     Konfirmasi Kehadiran
-                </h1>
-                <p className="text-gray-700 mb-10 text-lg">
+                </motion.h1>
+                <motion.p 
+                    className="text-gray-700 mb-10 text-lg"
+                    variants={fadeUp}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true, amount: 0.3 }}
+                >
                     Silahkan isi form berikut untuk konfirmasi kehadiran anda.
-                </p>
+                </motion.p>
 
                 {submitted ? (
                     <div>
                         Terima kasih! Kehadiran Anda telah dikonfirmasi.
                     </div>
                 ) : (
-                    <form
+                    <motion.form
                         onSubmit={handleSubmit}
                         className="bg-[#FBBDD0] backdrop-blur-md p-8 rounded-xl shadow-xl space-y-6 text-left"
+                        variants={fadeUp}
+                        initial="hidden"
+                        whileInView="show"
+                        viewport={{ once: true, amount: 0.3 }}
                     >
                         {/* Nama */}
                         <div>
@@ -98,7 +127,7 @@ export const FormRSVP = () => {
                         >
                             Kirim Kehadiran
                         </Button>
-                    </form>
+                    </motion.form>
                 )}
             </div>
         </section>
