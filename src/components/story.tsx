@@ -1,5 +1,29 @@
-import { greatVibes } from "@/app/font"
-import Image from "next/image"
+import { greatVibes } from "@/app/font";
+import Image from "next/image";
+import { motion, Variants } from "framer-motion";
+
+const containerVariants: Variants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.3, // delay antar item
+    },
+  },
+}
+
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut",
+    },
+  },
+}
+
+
 
 export const Story = () => {
     const stories = [
@@ -31,18 +55,40 @@ export const Story = () => {
         >
             <div className="absolute inset-0 backdrop-blur-xs bg-black/40 z-0" />
                 <div className="relative z-10 max-w-4xl mx-auto px-4 text-white text-center -mt-14">
-                    <h1 className={`${greatVibes.className} text-5xl lg:text-6xl font-fleur mb-8`}>
+                    <motion.h1 
+                        className={`${greatVibes.className} text-5xl lg:text-6xl font-fleur mb-8`}
+                        variants={fadeUp}
+                        initial="hidden"
+                        whileInView="show"
+                        viewport={{ once: true, amount: 0.3 }}
+                    >
                         Our Story
-                    </h1>
+                    </motion.h1>
 
-                    <div className="space-y-10 text-left flex flex-col items-center justify-center">
+                    <motion.div 
+                        className="space-y-10 text-left flex flex-col items-center justify-center"
+                        variants={containerVariants}
+                        initial="hidden"
+                        whileInView="show"
+                        viewport={{ once: true, amount: 0.3 }}
+                    >
                         {stories.map((story, i) => (
                             <>
-                                <div
+                                <motion.div
+                                    variants={fadeUp}
+                                    initial="hidden"
+                                    whileInView="show"
+                                    viewport={{ once: true, amount: 0.3 }}
                                     key={i} 
                                     className="bg-white/80 backdrop-blur-md p-6 rounded-xl shadow-md border border-white/30 w-full max-w-9xl lg:w-[1300px] flex flex-col md:flex-row gap-6 items-center"
                                 >
-                                    <div className="flex-shrink-0">
+                                    <motion.div 
+                                        className="flex-shrink-0"
+                                        variants={fadeUp}
+                                        initial="hidden"
+                                        whileInView="show"
+                                        viewport={{ once: true, amount: 0.3 }}
+                                    >
                                         <Image 
                                             src={story.image}
                                             alt={story.title}
@@ -50,16 +96,40 @@ export const Story = () => {
                                             height={120}
                                             className="mt-8 rounded-full object-cover mx-auto shadow-md mb-2"
                                         />
-                                    </div>
+                                    </motion.div>
                                     <div className="text-gray-800">
-                                        <h3 className="text-2xl font-semibold text-gray-800 mb-1 lg:text-3xl">{story.title}</h3>
-                                        <p className="text-sm text-gray-800 italic mb-2">{story.date}</p>
-                                        <p className="text-gray-800 leading-relaxed lg:text-xl">{story.text}</p>
+                                        <motion.h3 
+                                            className="text-2xl font-semibold text-gray-800 mb-1 lg:text-3xl"
+                                            variants={fadeUp}
+                                            initial="hidden"
+                                            whileInView="show"
+                                            viewport={{ once: true, amount: 0.3 }}
+                                        >
+                                            {story.title}
+                                        </motion.h3>
+                                        <motion.p 
+                                            className="text-sm text-gray-800 italic mb-2"
+                                            variants={fadeUp}
+                                            initial="hidden"
+                                            whileInView="show"
+                                            viewport={{ once: true, amount: 0.3 }}
+                                        >
+                                            {story.date}
+                                        </motion.p>
+                                        <motion.p 
+                                            className="text-gray-800 leading-relaxed lg:text-xl"
+                                            variants={fadeUp}
+                                            initial="hidden"
+                                            whileInView="show"
+                                            viewport={{ once: true, amount: 0.3 }}
+                                        >
+                                            {story.text}
+                                        </motion.p>
                                     </div>
-                                </div>
+                                </motion.div>
                             </>
                         ))}
-                    </div>
+                    </motion.div>
                 </div>
             
         </section>

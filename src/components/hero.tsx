@@ -1,7 +1,21 @@
 
 import Image from 'next/image';
 import { greatVibes } from "@/app/font";
+import { motion, Variants } from 'framer-motion'
 
+const fadeUp: Variants = {
+    hidden: { opacity: 0, y: 30 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
+}
+
+const staggerContainer = {
+    hidden: {},
+    show: {
+        transition: {
+        staggerChildren: 0.2,
+        },
+    },
+}
 
 export const Hero = () => {
     return (
@@ -12,23 +26,39 @@ export const Hero = () => {
             <div className="relative min-h-screen flex flex-col items-center justify-center text-center overflow-hidden">
                 <Image src="/wisteria1.jpg" alt="bg_front" fill priority className="object-top object-cover z-0 pointer-events-none select-none"/>
                 <div className="relative z-10 bg-white/10 backdrop-blur-md rounded-xl px-4 sm:px-6 md:px-10 py-6 sm:py-8 shadow-lg max-w-md sm:max-w-lg md:max-w-xl w-full mx-4 sm:mx-auto fade-in-up">
-                    <div className="flex flex-col gap-y-4">
-                        <p className="text-base font-semibold mb-4 sm:text-lg lg:text-2xl text-black">
-                            Hello, We Are Getting Married
-                        </p>
-                        <h1 className={`${greatVibes.className} text-5xl sm:text-6xl lg:text-7xl font-bold bg-gradient-to-r text-[#FFDE57] font-fleur bg-clip-text leading-tight`}>
-                            Nama Pengantin
-                        </h1>
-                        <h3 className={`${greatVibes.className} text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r text-[#FFDE57] bg-clip-text`}>
-                            and
-                        </h3>
-                        <h1 className={`${greatVibes.className} text-5xl sm:text-6xl lg:text-7xl font-bold bg-gradient-to-r text-[#FFDE57] bg-clip-text leading-tight`}>
-                            Nama Pengantin
-                        </h1>
-                        <p className="text-base sm:text-lg lg:text-xl font-medium mt-4 text-black">
-                            Saturday, Jan 1, 2025
-                        </p>
-                    </div>
+                    <motion.div 
+                        className="flex flex-col gap-y-4"
+                        variants={staggerContainer}
+                        initial="hidden"
+                        animate="show"
+                    >
+                            <motion.p 
+                                className="text-base font-semibold mb-4 sm:text-lg lg:text-2xl text-black"
+                                variants={fadeUp}    
+                            >
+                                    Hello, We Are Getting Married
+                            </motion.p>
+                            <motion.h1
+                                variants={fadeUp}
+                                className={`${greatVibes.className} text-5xl sm:text-6xl lg:text-7xl font-bold bg-gradient-to-r text-[#FFDE57] font-fleur bg-clip-text leading-tight`}>
+                                    Nama Pengantin
+                            </motion.h1>
+                            <motion.h3
+                                variants={fadeUp} 
+                                className={`${greatVibes.className} text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r text-[#FFDE57] bg-clip-text`}>
+                                    and
+                            </motion.h3>
+                            <motion.h1
+                                variants={fadeUp} 
+                                className={`${greatVibes.className} text-5xl sm:text-6xl lg:text-7xl font-bold bg-gradient-to-r text-[#FFDE57] bg-clip-text leading-tight`}>
+                                    Nama Pengantin
+                            </motion.h1>
+                            <motion.p
+                                variants={fadeUp} 
+                                className="text-base sm:text-lg lg:text-xl font-medium mt-4 text-black">
+                                    Saturday, Jan 1, 2025
+                            </motion.p>
+                    </motion.div>
                 </div>
             </div>
 

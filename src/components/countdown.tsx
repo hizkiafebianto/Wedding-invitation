@@ -2,7 +2,16 @@
 
 import { greatVibes } from "@/app/font";
 import { useState, useEffect } from "react";
+import { motion, Variants } from "framer-motion";
 
+const fadeUp: Variants = {
+    hidden: { opacity: 0, y: 30 },
+    show: {
+        opacity: 1,
+        y: 0,
+        transition: { duration: 0.6, ease: "easeOut" },
+    },
+}
 
 export const Countdown = () => {
     const targetDate = new Date("2026-01-01T09:00:00") // tanggal akad nikah
@@ -40,22 +49,45 @@ export const Countdown = () => {
     }, [])
 
     return (
-        <section data-aos="fade-up">
-            <div className="bg-[#FFEBF1] py-12 px-4 text-center text-gray-800">
-                <h1 className={`${greatVibes.className} text-5xl lg:text-6xl font-fleur mb-8 mt-8`}>
-                    Menuju Hari Bahagia
-                </h1>
-                <p className="text-gray-700 text-lg mb-12">
+        <section className="bg-[#FFEBF1] py-12 px-4 text-center text-gray-800">
+            <motion.div 
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true, amount: 0.3 }}
+            >
+                <motion.h1 
+                    className={`${greatVibes.className} text-5xl lg:text-6xl font-fleur mb-8 mt-8`}
+                    variants={fadeUp}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true, amount: 0.3 }}
+                >
+                        Menuju Hari Bahagia
+                </motion.h1>
+                <motion.p 
+                    className="text-gray-700 text-lg mb-12"
+                    variants={fadeUp}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true, amount: 0.3 }}
+                >
                     Kami akan melangsungkan pernikahan dalam :
-                </p>
+                </motion.p>
 
-                <div className="flex justify-center gap-6 flex-wrap text-pink-800 text-2xl font-semibold">
-                    <TimerBox label="Hari" value={timeLeft.days} />
-                    <TimerBox label="Jam" value={timeLeft.hours} />
-                    <TimerBox label="Menit" value={timeLeft.minutes} />
-                    <TimerBox label="Detik" value={timeLeft.seconds} />
-                </div>
-            </div>
+                <motion.div 
+                    className="flex justify-center gap-6 flex-wrap text-pink-800 text-2xl font-semibold"
+                    variants={fadeUp}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true, amount: 0.3 }}
+                >
+                        <TimerBox label="Hari" value={timeLeft.days} />
+                        <TimerBox label="Jam" value={timeLeft.hours} />
+                        <TimerBox label="Menit" value={timeLeft.minutes} />
+                        <TimerBox label="Detik" value={timeLeft.seconds} />
+                </motion.div>
+            </motion.div>
         </section>
     )
 }

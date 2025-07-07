@@ -1,6 +1,8 @@
 "use client"
 
 import { Alquran } from "@/components/alquran";
+import { AudioProvider } from "@/components/audio-provider";
+// import { AudioPlayer } from "@/components/audio-player";
 import { BrideGroom } from "@/components/bride-groom";
 import { Countdown } from "@/components/countdown";
 import { FormRSVP } from "@/components/form-rsvp";
@@ -24,6 +26,8 @@ export default function InvitationPage() {
         <Quote />
         <Gift />
         <FormRSVP />
+        {/* <AudioPlayer /> */}
+        <AudioProvider />
     </div>
   );
 }
