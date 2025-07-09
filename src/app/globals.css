@@ -194,6 +194,26 @@
   animation-delay: 1.7s;
 }
 
+@keyframes sway {
+    0% { transform: translate(0px, 0px) rotate(0deg); }
+    25% { transform: translate(4px, -2px) rotate(1deg); }
+    50% { transform: translate(0px, 2px) rotate(0deg); }
+    75% { transform: translate(-4px, -2px) rotate(-1deg); }
+    100% { transform: translate(0px, 0px) rotate(0deg); }
+}
+
+.animate-sway {
+    animation: sway 6s ease-in-out infinite;
+}
+
+.bg-tembok {
+  background-image: url('/background/tembok2.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
 
 /* #FBBDD0 => Peach */ 
 /* #C7D8FE => Blue */

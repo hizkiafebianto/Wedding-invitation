@@ -1,137 +1,88 @@
-import { greatVibes } from "@/app/font";
-import Image from "next/image";
-import { motion, Variants } from "framer-motion";
+"use client"
 
-const containerVariants: Variants = {
-  hidden: {},
-  show: {
-    transition: {
-      staggerChildren: 0.3, // delay antar item
-    },
+import { useState } from "react"
+import Image from "next/image"
+import { greatVibes } from "@/app/font"
+import { ChevronLeft, ChevronRight } from "lucide-react"
+
+const stories = [
+  {
+    title: "First Meet",
+    description:
+      `Jennifer & Edward's love story is nothing but adorable! It is the simple things in life that keeps the sparkles flying. Our first date was watching his senior video and eating Taco Bell lol.`,
+    image: "/ourstory/story1.jpg",
   },
-}
-
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 30 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: "easeOut",
-    },
+  {
+    title: "The Journey",
+    description:
+      "We stayed strong throughout the years, holding on to each other's dreams. The long walks, video calls, and shared laughter kept us going.",
+    image: "/ourstory/story2.jpg",
   },
-}
+  {
+    title: "The Proposal",
+    description:
+      "Under the stars, with close friends hiding nearby, he asked—and she said yes. It was the beginning of forever.",
+    image: "/ourstory/story3.jpg",
+  },
+]
 
+export const OurStory = () => {
+  const [current, setCurrent] = useState(0)
 
+  const nextStory = () => setCurrent((prev) => (prev + 1) % stories.length)
+  const prevStory = () => setCurrent((prev) => (prev - 1 + stories.length) % stories.length)
 
-export const Story = () => {
-    const stories = [
-        {
-            title: "Pertama Kenal",
-            date: "Januari 2020",
-            text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Incidunt ut, recusandae maxime reprehenderit facere vel ab a! Error, laboriosam! Explicabo?",
-            image: "/story1.jpg",
-            
-        },
-        {
-            title: "Menyatakan Cinta",
-            date: "Januari 2020",
-            text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Incidunt ut, recusandae maxime reprehenderit facere vel ab a! Error, laboriosam! Explicabo?",
-            image: "/story2.jpg",
-        },
-        {
-            title: "Tunangan",
-            date: "Januari 2020",
-            text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Incidunt ut, recusandae maxime reprehenderit facere vel ab a! Error, laboriosam! Explicabo?",
-            image: "/tunangan.jpg",
-        },
-    ]
+  const story = stories[current]
 
-    return (
-        <section 
-            className="relative bg-fixed bg-center bg-cover py-36 "
-            style={{ backgroundImage: "url('/wisteria1.jpg')" }}
-        >
-            <div className="absolute inset-0 backdrop-blur-xs bg-black/40 z-0" />
-                <div className="relative z-10 max-w-4xl mx-auto px-4 text-white text-center -mt-14">
-                    <motion.h1 
-                        className={`${greatVibes.className} text-5xl lg:text-6xl font-fleur mb-8`}
-                        variants={fadeUp}
-                        initial="hidden"
-                        whileInView="show"
-                        viewport={{ once: true, amount: 0.3 }}
-                    >
-                        Our Story
-                    </motion.h1>
+  return (
+    <section className="w-full px-4 py-20 text-center relative overflow-hidden">
+      <h2 className={`text-5xl ${greatVibes.className} text-lime-800 mb-12`}>Our Story</h2>
 
-                    <motion.div 
-                        className="space-y-10 text-left flex flex-col items-center justify-center"
-                        variants={containerVariants}
-                        initial="hidden"
-                        whileInView="show"
-                        viewport={{ once: true, amount: 0.3 }}
-                    >
-                        {stories.map((story, i) => (
-                            
-                                <motion.div
-                                    variants={fadeUp}
-                                    initial="hidden"
-                                    whileInView="show"
-                                    viewport={{ once: true, amount: 0.3 }}
-                                    key={i} 
-                                    className="bg-white/80 backdrop-blur-md p-6 rounded-xl shadow-md border border-white/30 w-full max-w-9xl lg:w-[1300px] flex flex-col md:flex-row gap-6 items-center"
-                                >
-                                    <motion.div 
-                                        className="flex-shrink-0"
-                                        variants={fadeUp}
-                                        initial="hidden"
-                                        whileInView="show"
-                                        viewport={{ once: true, amount: 0.3 }}
-                                    >
-                                        <Image 
-                                            src={story.image}
-                                            alt={story.title}
-                                            width={120}   
-                                            height={120}
-                                            className="mt-8 rounded-full object-cover mx-auto shadow-md mb-2"
-                                        />
-                                    </motion.div>
-                                    <div className="text-gray-800">
-                                        <motion.h3 
-                                            className="text-2xl font-semibold text-gray-800 mb-1 lg:text-3xl"
-                                            variants={fadeUp}
-                                            initial="hidden"
-                                            whileInView="show"
-                                            viewport={{ once: true, amount: 0.3 }}
-                                        >
-                                            {story.title}
-                                        </motion.h3>
-                                        <motion.p 
-                                            className="text-sm text-gray-800 italic mb-2"
-                                            variants={fadeUp}
-                                            initial="hidden"
-                                            whileInView="show"
-                                            viewport={{ once: true, amount: 0.3 }}
-                                        >
-                                            {story.date}
-                                        </motion.p>
-                                        <motion.p 
-                                            className="text-gray-800 leading-relaxed lg:text-xl"
-                                            variants={fadeUp}
-                                            initial="hidden"
-                                            whileInView="show"
-                                            viewport={{ once: true, amount: 0.3 }}
-                                        >
-                                            {story.text}
-                                        </motion.p>
-                                    </div>
-                                </motion.div>
-                            
-                        ))}
-                    </motion.div>
-                </div>
-            
-        </section>
-    )
+      <div className="max-w-xl mx-auto bg-white shadow-lg rounded-lg p-6 relative min-h-[500px] md:min-h-[600px] flex flex-col justify-start">
+  {/* Gambar */}
+  <div className="relative w-full h-56 md:h-72 lg:h-96 rounded-lg overflow-hidden mb-4">
+    <Image
+      src={story.image}
+      alt={story.title}
+      fill
+      className="object-cover"
+    />
+  </div>
+
+  {/* Judul */}
+  <h3 className="text-xl font-semibold text-lime-700 mb-2">{story.title}</h3>
+
+  {/* Deskripsi */}
+  <div className="text-gray-600 text-sm flex-1 overflow-y-auto px-1">
+    {story.description}
+  </div>
+
+  {/* Navigasi */}
+  <button
+    onClick={prevStory}
+    className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow hover:bg-lime-100"
+  >
+    <ChevronLeft size={24} />
+  </button>
+
+  <button
+    onClick={nextStory}
+    className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow hover:bg-lime-100"
+  >
+    <ChevronRight size={24} />
+  </button>
+
+  {/* Indikator */}
+  <div className="flex justify-center gap-2 mt-4">
+    {stories.map((_, i) => (
+      <div
+        key={i}
+        className={`w-2 h-2 rounded-full ${i === current ? "bg-lime-600" : "bg-gray-300"}`}
+      />
+    ))}
+  </div>
+</div>
+
+    </section>
+  )
 }

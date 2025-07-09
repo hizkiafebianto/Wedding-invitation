@@ -1,51 +1,41 @@
-import { greatVibes } from "@/app/font";
-import { motion, Variants } from "framer-motion";
+"use client"
 
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 30 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: "easeOut",
-    },
-  },
-}
+// import Image from "next/image"
 
 export const Quote = () => {
     return (
-        <section className="bg-[#FFEBF1] py-12 px-4 text-center text-gray-800">
-            <div className="max-w-4xl mx-auto px-4">
-                <motion.h1 
-                    className={`${greatVibes.className} text-5xl lg:text-6xl font-fleur mt-8 mb-12`}
-                    variants={fadeUp}
-                    initial="hidden"
-                    whileInView="show"
-                    viewport={{ once: true, amount: 0.3 }}
-                >
-                    Quote
-                </motion.h1>
+        <section className="w-full py-16 flex flex-col items-center text-center">
+            {/* kutipan quote */}
+            <p className="text-sm text-gray-900 font-medium italic max-w-2xl leading-relaxed">
+                {`"God has poured out His love into our hearts,`} <br />
+                {`and in His perfect timing, He brought us together.`} <br />
+                {`With joy and gratitude, we invite you to witness the beginning`} <br />
+                {`of this blessed journey of marriage."`} <br />
+            </p>
 
-                <motion.p 
-                    className="italic lg:text-2xl"
-                    variants={fadeUp}
-                    initial="hidden"
-                    whileInView="show"
-                    viewport={{ once: true, amount: 0.3 }}
-                >
-                    {`"Tidak ada solusi yang lebih baik bagi dua insan yang saling mencintai di banding pernikahan."`}
-                </motion.p>
-                <motion.p 
-                    className="mt-8 text-pink-800 font-bold text-xl mb-8"
-                    variants={fadeUp}
-                    initial="hidden"
-                    whileInView="show"
-                    viewport={{ once: true, amount: 0.3 }}
-                >
-                    HR. Ibnu Majah
-                </motion.p>
-            </div>
+            {/* Image background */}
+            {/* <div className="relative w-full mt-48 min-h-[300px] overflow-visible">
+                
+                <Image 
+                    src="/image_quote/Orn-65.png"
+                    alt="Gazebo"
+                    width={1000}
+                    height={700}
+                    className="w-full h-auto object-cover z-10"
+                />
+               
+                <div className="absolute -top-36 left-1/2 -translate-x-1/2 -z-10">
+                    <Image 
+                        src="/image_quote/Orn-01.png"
+                        alt="Gazebo"
+                        width={400}
+                        height={400}
+                        className="w-[500px] h-auto"
+                    />
+                </div>
+
+                
+            </div> */}
         </section>
     )
 }
