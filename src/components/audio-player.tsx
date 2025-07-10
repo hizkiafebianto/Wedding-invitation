@@ -26,7 +26,7 @@ export const AudioPlayer = ({ audioRef }: AudioPlayerProps) => {
     <div className="fixed bottom-4 right-4 z-50">
       <Button
         onClick={toggleAudio}
-        className="rounded-full p-3 bg-[#FBBDD0] text-white shadow-lg hover:bg-white hover:text-[#FBBDD0] cursor-pointer"
+        className="rounded-full p-3 bg-lime-900 text-white shadow-lg hover:bg-white hover:text-black cursor-pointer"
       >
         {playing ? <Pause size={20} /> : <Play size={20} />}
       </Button>

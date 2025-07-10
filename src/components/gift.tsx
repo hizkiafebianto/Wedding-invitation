@@ -1,113 +1,94 @@
-import { greatVibes } from "@/app/font";
+"use client"
+
 import Image from "next/image";
+import { useState } from "react"
 import { Button } from "./ui/button";
-import { useState } from "react";
-import { motion, Variants } from "framer-motion";
+import { Copy } from "lucide-react";
+import { greatVibes } from "@/app/font";
 
-const fadeUp: Variants = {
-    hidden: { opacity: 0, y: 30 },
-    show: {
-        opacity: 1,
-        y: 0,
-        transition: {
-        duration: 0.6,
-        ease: "easeOut",
-        },
+const banks = [
+    {
+        name: "Bank BCA",
+        accountNumber: "206 074 3137",
+        rawAccountNumber: "2060743137",
+        accountName: "Hizkia Febianto",
+        qrCode: null,
     },
-}
+    {
+        name: "Bank Mandiri",
+        accountNumber: "1340021425441",
+        rawAccountNumber: "1340021425441",
+        accountName: "Hizkia Febianto",
+        qrCode: "/qris.png",
+    }
+]
 
-export const Gift = () => {
-    const [copied, setCopied] = useState<string | null>(null)
+export const GiftSection = () => {
+    const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
 
-    const handleCopy = (text: string, label: string) => {
+    const handleCopy = (text: string, index: number) => {
         navigator.clipboard.writeText(text)
-        setCopied(label)
-        setTimeout(() => setCopied(null), 2000)
+        setCopiedIndex(index)
+        setTimeout(() => setCopiedIndex(null), 1500)
     }
 
     return (
-        <section className="bg-[#FFEBF1] py-12 px-4 text-center text-gray-800">
-            <div className="max-w-4xl mx-auto px-4">
-                <motion.h1 
-                    className={`${greatVibes.className} text-5xl lg:text-6xl font-fleur mb-8`}
-                    variants={fadeUp}
-                    initial="hidden"
-                    whileInView="show"
-                    viewport={{ once: true, amount: 0.3 }}
-                >
-                    Wedding Gift
-                </motion.h1>
+        <section className="py-20 px-4 text-center text-lime-900 relative">
+            <div className="max-w-xl mx-auto bg-white/70 rounded-xl p-6 shadow-md">
+                <h2 className={`text-5xl font-serif mb-4 ${greatVibes.className}`}>
+                    E-Gift
+                </h2>
+                <p className="text-sm mb-6">
+                    If you want to give a gift we provide a digital envelope to make it easier for you. Thank you
+                </p>
 
-                <motion.p 
-                    className="max-w-4xl mx-auto mb-12 text-lg"
-                    variants={fadeUp}
-                    initial="hidden"
-                    whileInView="show"
-                    viewport={{ once: true, amount: 0.3 }}
-                >
-                    Doa restu Anda merupakan karunia yang sangat berarti bagi kami. Jika ingin memberikan tanda kasih, dapat melalui informasi di bawah ini.
-                </motion.p>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-
-                    {/* QRIS */}
-                    <motion.div 
-                        className="bg-[#FBBDD0] backdrop-blur-md p-6 rounded-xl shadow-xl border border-white/20"
-                        variants={fadeUp}
-                        initial="hidden"
-                        whileInView="show"
-                        viewport={{ once: true, amount: 0.3 }}
+                {banks.map((bank, index) => (
+                    <div 
+                        className="mb-10 text-center"
+                        key={bank.name}
                     >
-                        <h3 className="text-xl font-semibold text-pink-800 mb-4">
-                            Scan QRIS
+                        <h3 className="text-lg font-semibold">
+                            {bank.name}
                         </h3>
-                        <div className="flex justify-center">
-                            <Image 
-                                src="/qris.png"
-                                alt="QRIS"
-                                width={200}
-                                height={200}
-                                className="rounded-md shadow-md"
-                            />
-                        </div>
-
-                        <p className="text-sm text-gray-600 mt-4 italic">
-                            Scan menggunakan aplikasi e-wallet favorit Anda
+                        <p className="text-sm">
+                            Account Number:
                         </p>
-                    </motion.div>
+                        <p className="font-semibold text-lime-900">
+                            {bank.accountNumber}
+                        </p>
+                        <p className="text-sm">
+                            Account Name:
+                        </p>
+                        <p className="font-semibold mb-3">
+                            {bank.accountName}
+                        </p>
 
-                    {/* Rekening */}
-                    <motion.div 
-                        className="bg-[#FBBDD0] backdrop-blur-md p-6 rounded-xl shadow-xl border border-white/20 text-left flex flex-col justify-between"
-                        variants={fadeUp}
-                        initial="hidden"
-                        whileInView="show"
-                        viewport={{ once: true, amount: 0.3 }}
-                    >
-                        <div>
-                            <h3 className="text-xl font-semibold text-pink-800 mb-4">
-                                Transfer Rekening
-                            </h3>
-
-                            <div className="mb-6">
-                                <p className="font-semibold text-gray-800">
-                                    BCA - 1234567890
-                                </p>
-                                <p className="text-sm text-gray-600 mb-2">
-                                    a.n. Rekening ku ya
-                                </p>
-
-                                <Button
-                                    variant="outline"
-                                    onClick={() => handleCopy("1234567890", "BCA")}
-                                    className="cursor-pointer"
-                                >
-                                    {copied === "BCA" ? "Disalin" : "Salin Nomor"}
-                                </Button>
+                        {bank.qrCode && (
+                            <div className="flex justify-center mb-4">
+                                <Image 
+                                    src={bank.qrCode}
+                                    alt={`${bank.name} QR Code`}
+                                    width={130}
+                                    height={130}
+                                    className="rounded shadow"
+                                />
                             </div>
-                        </div>
-                    </motion.div>
-                </div>
+                        )}
+
+                        <Button
+                            variant="secondary"
+                            onClick={() => handleCopy(bank.rawAccountNumber, index)}
+                        >
+                            <Copy className="w-4 h-4 mr-2" /> Copy
+                        </Button>
+
+                        {copiedIndex === index && (
+                            <p className="mt-2 text-green-600 text-sm">
+                                Copied
+                            </p>
+                        )}
+                    </div>
+                ))}
             </div>
         </section>
     )

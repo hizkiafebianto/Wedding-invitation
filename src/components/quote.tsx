@@ -6,7 +6,7 @@ export const Quote = () => {
     return (
         <section className="w-full py-16 flex flex-col items-center text-center">
             {/* kutipan quote */}
-            <p className="text-sm text-gray-900 font-medium italic max-w-2xl leading-relaxed">
+            <p className="text-sm text-lime-900 font-medium italic max-w-2xl leading-relaxed">
                 {`"God has poured out His love into our hearts,`} <br />
                 {`and in His perfect timing, He brought us together.`} <br />
                 {`With joy and gratitude, we invite you to witness the beginning`} <br />

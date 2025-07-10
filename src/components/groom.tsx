@@ -7,9 +7,9 @@ import { FaInstagram } from "react-icons/fa";
 export const GroomSection = () => {
   return (
     <section className="w-full py-16 px-6">
-      <div className="max-w-xl relative">
+      <div className="max-w-xl relative flex flex-col items-center">
         {/* Foto Groom dalam frame lingkaran */}
-        <div className="relative w-96 h-96 rounded-full -left-6 overflow-hidden">
+        <div className="relative w-96 h-96 rounded-full overflow-hidden">
           <Image
             src="/fiersa.jpg"
             alt="Groom"
