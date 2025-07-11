@@ -35,9 +35,22 @@ export const OurStory = () => {
   const story = stories[current]
 
   return (
-    <section className="w-full px-4 py-20 text-center relative overflow-hidden">
-      <h2 className={`text-5xl ${greatVibes.className} text-lime-800 mb-12`}>Our Story</h2>
+    <section className="w-full px-4 py-20 text-center relative overflow-hidden z-10">
+      <h2 className={`text-5xl ${greatVibes.className} text-white mb-12`}>Our Story</h2>
 
+<div className="absolute inset-0 -z-10">
+        <Image
+          src="/ourstory/bg.jpg"
+          alt="Holy Matrimony Background"
+          layout="fill"
+          objectFit="cover"
+          priority
+        />
+      </div>
+
+      {/* Blur Overlay */}
+      <div className="absolute inset-0 bg-black/40 backdrop-blur-sm -z-10" />
+      
       <div className="max-w-xl mx-auto bg-white shadow-lg rounded-lg p-6 relative min-h-[500px] md:min-h-[600px] flex flex-col justify-start">
   {/* Gambar */}
   <div className="relative w-full h-56 md:h-72 lg:h-96 rounded-lg overflow-hidden mb-4">

@@ -29,7 +29,7 @@ export const RSVPSection = () => {
 
   if (submitted) {
     return (
-      <section className="px-4 text-center text-lime-900 relative">
+      <section  className="px-4 text-center text-lime-900 relative">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -51,7 +51,7 @@ export const RSVPSection = () => {
   }
 
   return (
-    <section className="px-4 text-center text-lime-900 relative">
+    <section id="rsvp" className="px-4 text-center text-lime-900 relative scroll-mt-48">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}

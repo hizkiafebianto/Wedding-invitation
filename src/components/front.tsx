@@ -4,147 +4,135 @@ import { Button } from "./ui/button"
 import { FaEnvelopeOpenText } from "react-icons/fa"
 import Image from "next/image"
 import { greatVibes } from "@/app/font"
-import { useEffect, useRef, useState } from "react"
+import { useRef } from "react"
 import { useRouter } from "next/navigation"
 import { motion, Variants } from "framer-motion"
 
-const backgroundImages = [
-    "/background/wisteria1.jpg",
-    "/background/wisteria4.jpg",
-    "/background/wisteria3.jpg"
-]
-
 const fadeUp: Variants = {
-    hidden: { opacity: 0, y: 30 },
-    show: {
-        opacity: 1,
-        y: 0,
-        transition: { duration: 0.6, ease: "easeOut" },
-    },
+  hidden: { opacity: 0, y: 30 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
 }
 
 const staggerContainer = {
-    hidden: {},
-    show: {
-        transition: {
-        staggerChildren: 0.15,
-        },
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.15,
     },
+  },
 }
 
 const Front = () => {
-    const audioRef = useRef<HTMLAudioElement>(null)
-    const router = useRouter()
+  const audioRef = useRef<HTMLAudioElement>(null)
+  const router = useRouter()
 
-    const handleOpen = () => {
-        if (typeof window !== "undefined") {
-            window.localStorage.setItem("shouldPlayAudio", "true")
-        }
-        router.push("/invitation")
+  const handleOpen = () => {
+    if (typeof window !== "undefined") {
+      window.localStorage.setItem("shouldPlayAudio", "true")
     }
+    router.push("/invitation")
+  }
 
-    const [currentBg, setCurrentBg] = useState(0);
+  return (
+    <>
+      <audio ref={audioRef} src="/audio/audio.mp3" loop preload="auto" />
 
-        useEffect(() => {
-            const interval = setInterval(() => {
-                setCurrentBg((prev) => (prev + 1) % backgroundImages.length)
-            }, 5000)
+      <div className="relative min-h-screen flex items-center justify-center text-center overflow-hidden">
+        
+        {/* Background utama */}
+        <div className="absolute inset-0 -z-10">
+          <Image
+            src="/background/wisteria1.jpg"
+            alt="Main Background"
+            fill
+            className="object-cover object-center"
+          />
+        </div>
 
-            return () => clearInterval(interval)
-        })
+        {/* Kartu utama */}
+        <motion.div
+          className="relative z-10 bg-white/90 rounded-2xl mt-40 px-6 sm:px-10 py-10 shadow-xl max-w-md sm:max-w-lg w-full pt-32"
+          variants={staggerContainer}
+          initial="hidden"
+          animate="show"
+        >
+          {/* Foto pasangan (keluar dari atas card) */}
+          <motion.div
+            variants={fadeUp}
+            className="absolute -top-56 left-1/2 -translate-x-1/2 w-[50%]"
+          >
+            <Image
+              src="/frame_oval.png"
+              alt="Couple"
+              width={500}
+              height={500}
+              className="object-cover w-full h-full"
+            />
+          </motion.div>
 
-    return (
-        <>
-            <audio ref={audioRef} src="/audio/audio.mp3" loop preload="auto" />
+          <motion.p 
+            variants={fadeUp} 
+            className="text-sm text-gray-700 mb-4"
+          >
+            We invite you to the wedding of
+          </motion.p>
 
-            <div className="relative min-h-screen flex flex-col items-center justify-center text-center overflow-hidden">
-                <div className="absolute inset-0 z-0">
-                    {backgroundImages.map((src, index) => (
-                        <motion.div
-                            key={src}
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: index === currentBg ? 1 : 0 }}
-                            transition={{ duration: 1 }}
-                            className="absolute inset-0"
-                            >
-                            <Image
-                                src={src}
-                                alt={`bg-${index}`}
-                                fill
-                                className="object-cover object-top w-full h-full transition-opacity duration-1000"
-                            />
-                            </motion.div>
-                    ))}
-                </div>
-                {/* <Image
-                    src="/background/wisteria1.jpg"
-                    alt="bg_front"
-                    fill
-                    priority
-                    className="object-top object-cover z-0 pointer-events-none select-none"
-                /> */}
+          <motion.h1
+            variants={fadeUp}
+            className={`${greatVibes.className} text-6xl text-lime-900 mb-2`}
+          >
+            Hizkia
+          </motion.h1>
 
-                {/* main card */}
-                <motion.div
-                    className="relative z-10 bg-white/10 backdrop-blur-md rounded-xl px-4 sm:px-6 md:px-10 py-6 sm:py-8 shadow-lg max-w-md sm:max-w-lg md:max-w-xl w-full mx-4 sm:mx-auto"
-                    variants={staggerContainer}
-                    initial="hidden"
-                    animate="show"
-                >
+          <motion.h3
+            variants={fadeUp}
+            className={`${greatVibes.className} text-4xl text-lime-900 mb-2`}
+          >
+            &
+          </motion.h3>
 
-                    <motion.p 
-                        variants={fadeUp} 
-                        className="text-sm mb-8 sm:text-lg lg:text-xl text-black">
-                            We cordially invite you to the Wedding Celebration of
-                    </motion.p>
+          <motion.h2
+            variants={fadeUp}
+            className={`${greatVibes.className} text-6xl text-lime-900 mb-4`}
+          >
+            Yushellia
+          </motion.h2>
 
-                    <motion.h1
-                        variants={fadeUp}
-                        className={`${greatVibes.className} text-6xl lg:text-7xl font-bold text-[#FFDE57]`}
-                    >
-                        Hizkia
-                    </motion.h1>
+          <motion.p
+            variants={fadeUp}
+            className="text-gray-600 text-sm sm:text-base mb-6"
+          >
+            Saturday, January 1, 2025
+          </motion.p>
 
-                    <motion.h3
-                        variants={fadeUp}
-                        className={`${greatVibes.className} text-2xl sm:text-3xl lg:text-4xl font-bold text-[#FFDE57]`}
-                    >
-                        and
-                    </motion.h3>
+          <motion.div 
+            variants={fadeUp} 
+            className="mb-6"
+          >
+            <p className="text-sm text-black">Dear</p>
+            <p className="font-semibold text-lg text-black">
+              Mr. David and Ms. Natali
+            </p>
+            <p className="text-sm text-black">[Alamat Tamu]</p>
+          </motion.div>
 
-                    <motion.h2
-                        variants={fadeUp}
-                        className={`${greatVibes.className} text-6xl lg:text-7xl font-bold text-[#FFDE57]`}
-                    >
-                        Yushellia
-                    </motion.h2>
-
-                    <motion.p
-                        variants={fadeUp}
-                        className="text-base sm:text-lg lg:text-xl mt-4 text-black"
-                    >
-                        Saturday, Jan 1, 2025
-                    </motion.p>
-
-                    <motion.div 
-                        variants={fadeUp} 
-                        className="mt-10 flex flex-col items-center gap-1 text-black">
-                            <span className="text-sm sm:text-base">Dear</span>
-                            <p className="text-lg sm:text-xl font-semibold">Special invitation for: Mr. David and Ms. Natali</p>
-                            <span className="text-sm sm:text-base">Alamat tamu</span>
-                    </motion.div>
-
-                    <motion.div variants={fadeUp} className="mt-8">
-                        <Button onClick={handleOpen} variant="pink" className="text-sm sm:text-base">
-                            <FaEnvelopeOpenText className="size-4 text-black" />
-                            <p>Open the Invitation</p>
-                        </Button>
-                    </motion.div>
-                </motion.div>
-            </div>
-        </>
-    )
-
+          <motion.div variants={fadeUp}>
+            <Button
+              onClick={handleOpen}
+              className="bg-lime-900 text-white hover:bg-lime-700"
+            >
+              <FaEnvelopeOpenText className="mr-2" />
+              Open the Invitation
+            </Button>
+          </motion.div>
+        </motion.div>
+      </div>
+    </>
+  )
 }
 
 export default Front

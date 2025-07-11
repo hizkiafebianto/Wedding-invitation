@@ -22,9 +22,21 @@ const dresscodeData = [
 
 export const EventDresscode = () => {
   return (
-    <section className="relative w-full px-4 py-20 text-lime-900 text-center">
+    <section className="relative mb-24 w-full px-4 py-20 text-lime-900 text-center overflow-hidden">
+      
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <Image
+          src="/dresscode/bgdress.png" 
+          alt="Background"
+          fill
+          className="object-cover object-center w-full h-full"
+          quality={100}
+        />
+      </div>
+
+      {/* Foreground Content */}
       <div className="relative z-10 max-w-5xl mx-auto">
-        {/* Title */}
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -37,12 +49,11 @@ export const EventDresscode = () => {
           Wedding Day Attire
         </p>
 
-        {/* Dresscode Cards */}
         <div className="flex flex-col md:flex-row justify-center items-center gap-6">
           {dresscodeData.map((item, i) => (
             <div
               key={i}
-              className="w-full max-w-[340px] sm:max-w-sm md:flex-1 bg-white/80 rounded-2xl p-6 sm:p-8 shadow-lg"
+              className="w-full max-w-[340px] sm:max-w-sm md:flex-1 bg-white/80 backdrop-blur-md rounded-2xl p-6 sm:p-8 shadow-lg"
             >
               <h3 className="text-lg sm:text-xl font-bold mb-2">{item.title}</h3>
               <p className="mb-4 italic text-sm sm:text-base">{item.theme}</p>
@@ -68,7 +79,6 @@ export const EventDresscode = () => {
           ))}
         </div>
 
-        {/* Footnote */}
         <p className="text-xs mt-10 max-w-md mx-auto text-lime-900">
           We kindly ask that guests please attend wearing our wedding colors.
         </p>

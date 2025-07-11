@@ -1,12 +1,12 @@
 "use client"
 
-// import Image from "next/image"
+import Image from "next/image"
 
 export const Quote = () => {
     return (
-        <section className="w-full py-16 flex flex-col items-center text-center">
+        <section className="w-full py-16 flex flex-col items-center text-center lg:mb-8 mt-8">
             {/* kutipan quote */}
-            <p className="text-sm text-lime-900 font-medium italic max-w-2xl leading-relaxed">
+            <p className="text-sm text-lime-900 font-medium italic max-w-2xl leading-relaxed z-10">
                 {`"God has poured out His love into our hearts,`} <br />
                 {`and in His perfect timing, He brought us together.`} <br />
                 {`With joy and gratitude, we invite you to witness the beginning`} <br />
@@ -14,28 +14,18 @@ export const Quote = () => {
             </p>
 
             {/* Image background */}
-            {/* <div className="relative w-full mt-48 min-h-[300px] overflow-visible">
+            <div className="relative w-full h-[280px]">
                 
                 <Image 
-                    src="/image_quote/Orn-65.png"
+                    src="/image_quote/quote.png"
                     alt="Gazebo"
                     width={1000}
                     height={700}
-                    className="w-full h-auto object-cover z-10"
+                    className="object-contain lg:-translate-y-32 -translate-y-24 z-0"
                 />
-               
-                <div className="absolute -top-36 left-1/2 -translate-x-1/2 -z-10">
-                    <Image 
-                        src="/image_quote/Orn-01.png"
-                        alt="Gazebo"
-                        width={400}
-                        height={400}
-                        className="w-[500px] h-auto"
-                    />
-                </div>
 
                 
-            </div> */}
+            </div>
         </section>
     )
 }

@@ -23,10 +23,13 @@ export const Gallery = () => {
   const [selected, setSelected] = useState<string | null>(null)
 
   return (
-    <section className="py-16 px-4 ">
+    <section className="py-16 px-4 mt-16">
       <h2 className={`text-5xl ${greatVibes.className} text-center font-semibold text-lime-900 mb-8`}>Our Gallery</h2>
 
-      <div ref={sliderRef} className="keen-slider">
+      <div 
+        ref={sliderRef} 
+        className="keen-slider"
+      >
         {images.map((src, i) => (
           <div key={i} className="keen-slider__slide">
             <div className="relative w-full aspect-[4/3] overflow-hidden rounded-xl shadow-md cursor-pointer">
@@ -45,7 +48,10 @@ export const Gallery = () => {
 
       {/* Preview Modal */}
       {selected && (
-        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50" onClick={() => setSelected(null)}>
+        <div 
+          className="fixed inset-0 bg-black/70 flex items-center justify-center z-50" 
+          onClick={() => setSelected(null)}
+        >
           <div className="max-w-4xl w-full px-4">
             <Image
               src={selected}
