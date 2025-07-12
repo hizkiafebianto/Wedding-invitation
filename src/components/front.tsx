@@ -76,14 +76,14 @@ const Front = () => {
 
           <motion.p 
             variants={fadeUp} 
-            className="text-sm text-gray-700 mb-4"
+            className="text-sm text-gray-700 mb-4 lg:mb-10"
           >
             We invite you to the wedding of
           </motion.p>
 
           <motion.h1
             variants={fadeUp}
-            className={`${greatVibes.className} text-6xl text-lime-900 mb-2`}
+            className={`${greatVibes.className} text-6xl lg:text-7xl text-lime-900 mb-2`}
           >
             Hizkia
           </motion.h1>
@@ -97,7 +97,7 @@ const Front = () => {
 
           <motion.h2
             variants={fadeUp}
-            className={`${greatVibes.className} text-6xl text-lime-900 mb-4`}
+            className={`${greatVibes.className} text-6xl lg:text-7xl text-lime-900 mb-4`}
           >
             Yushellia
           </motion.h2>

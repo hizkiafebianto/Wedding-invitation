@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { greatVibes } from "@/app/font";
 import { Button } from './ui/button';
 import { useCallback } from 'react';
+import { motion, Variants } from "framer-motion";
 
 export const Hero = () => {
   const handleScrollToRSVP = useCallback(() => {
@@ -16,24 +17,94 @@ export const Hero = () => {
     }
   }, []);
 
+  const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
+}
+
+const staggerContainer = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+}
+
   return (
-    <div className="flex flex-col items-center text-center">
+    <section className="flex flex-col items-center text-center">
       {/* Logo & bunga atas */}
-      <div className="relative w-full flex flex-col items-center pt-40 pb-20 z-10 overflow-hidden"> {/* Ubah overflow-x-hidden menjadi overflow-hidden */}
+      <motion.div 
+          className="relative w-full flex flex-col items-center pt-40 pb-20 z-10 overflow-hidden"
+          variants={staggerContainer}
+          initial="hidden"
+          animate="show"
+      > {/* Ubah overflow-x-hidden menjadi overflow-hidden */}
         {/* <div className="absolute top-0 left-0 w-full h-[1200px] pointer-events-none z-0"> Tingkatkan tinggi di sini */}
-          <Image src="/bunga/frame-left (3).png" alt="Bunga Kiri" width={200} height={200} className="absolute -top-6 -left-6 translate-x-[-30%] w-48 lg:w-60 h-auto animate-sway z-10" />
-          <Image src="/bunga/frame-left (4).png" alt="Bunga Kanan" width={200} height={200} className="absolute -top-6 -right-6 translate-x-[30%] w-48 lg:w-60 h-auto animate-sway z-10" />
-          <Image src="/bunga/hero.png" alt="Bunga Kanan" width={300} height={300} className="absolute top-16 -right-16 w-48 lg:w-60 animate-sway" />
-          <Image src="/bunga/hero-1.png" alt="Bunga Kiri" width={200} height={200} className="absolute top-16 -left-16 w-48 lg:w-60 h-auto animate-sway" />
-          <Image src="/image/logo.png" alt="Logo" width={1000} height={1000} className="z-20 w-11/12 -mt-36" />
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.3 }}
+        >
+          <Image 
+              src="/bunga/frame-left (3).png" 
+              alt="Bunga Kiri" 
+              width={200} 
+              height={200} 
+              className="absolute -top-6 -left-6 translate-x-[-30%] w-48 lg:w-60 h-auto animate-sway z-10" 
+          />
+        </motion.div>
+          <Image 
+              src="/bunga/frame-left (4).png" 
+              alt="Bunga Kanan" 
+              width={200} 
+              height={200} 
+              className="absolute -top-6 -right-6 translate-x-[30%] w-48 lg:w-60 h-auto animate-sway z-10" 
+          />
+          <Image 
+              src="/bunga/hero.png" 
+              alt="Bunga Kanan" 
+              width={300} 
+              height={300} 
+              className="absolute top-16 -right-16 w-48 lg:w-60 animate-sway" 
+          />
+          <Image 
+              src="/bunga/hero-1.png" 
+              alt="Bunga Kiri" 
+              width={200} 
+              height={200} 
+              className="absolute top-16 -left-16 w-48 lg:w-60 h-auto animate-sway" 
+          />
+          <Image 
+              src="/image/logo.png" 
+              alt="Logo" 
+              width={1000} 
+              height={1000} 
+              className="z-20 w-11/12 -mt-36" />
         {/* </div> */}
-      </div>
+      </motion.div>
 
       {/* Foto Couple & Nama */}
       <div className="relative w-[90%] max-w-[480px] aspect-[3/4] mx-auto flex mb-8 flex-col items-center justify-end -mt-24 overflow-hidden z-30">
-        <Image src="/image/couple-foto.png" alt="Foto Couple" fill className="object-contain" priority />
+        <Image 
+            src="/image/couple-foto.png" 
+            alt="Foto Couple" 
+            fill 
+            className="object-contain" 
+            priority />
         <div className="absolute bottom-0 z-40 w-full flex justify-center pointer-events-none">
-          <Image src="/background/cahaya.png" alt="Cahaya" width={1200} height={200} className="w-[170%] max-w-none h-auto translate-y-12" priority />
+          <Image 
+              src="/background/cahaya.png" 
+              alt="Cahaya" 
+              width={1200} 
+              height={200} 
+              className="w-[170%] max-w-none h-auto translate-y-12" 
+              priority />
         </div>
 
         <div className="absolute bottom-0 z-50 text-center w-full -translate-y-10 px-4">
@@ -67,6 +138,6 @@ export const Hero = () => {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };

@@ -51,27 +51,27 @@ export const BrideSection = () => {
         
         {/* Nama mempelai */}
         <h2 className={`${greatVibes.className} text-center text-6xl text-lime-900 mt-20`}>
-          Edward Gio
+          Yushellia Tania
         </h2>
 
         {/* Nama orang tua */}
         <p className="mt-2 text-lg text-center text-gray-600">
-          The Son of Mr. Leo <br /> & Mrs. Jenny
+          The Daughter of Mr. Yu Lim Kang <br /> &  Mrs. Tan Hui Suan
         </p>
 
         {/* Link Instagram */}
         <div className="mt-4 flex justify-center">
           <a
-            href="https://instagram.com/katsudoto"
+            href="https://www.instagram.com/yushelliatania/"
             target="_blank"
             rel="noopener noreferrer"
             className="bg-lime-900 text-white text-lg px-4 py-1 rounded-full flex items-center gap-2"
           >
             <FaInstagram />
-            @katsudoto
+            @yushelliatania
           </a>
         </div>
       </div>
     </section>
-  )
+  )  
 }
