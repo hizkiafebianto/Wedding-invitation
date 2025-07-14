@@ -4,9 +4,11 @@ import { Button } from "./ui/button"
 import { FaEnvelopeOpenText } from "react-icons/fa"
 import Image from "next/image"
 import { greatVibes } from "@/app/font"
-import { useRef } from "react"
-import { useRouter } from "next/navigation"
+import { useRef, useEffect, useState } from "react"
+import { useRouter, useSearchParams } from "next/navigation"
 import { motion, Variants } from "framer-motion"
+
+
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 30 },
@@ -36,6 +38,32 @@ const Front = () => {
     }
     router.push("/invitation")
   }
+
+const [guestName, setGuestName] = useState("Tamu Undangan")
+// const [guestAddress, setGuestAddress] = useState("")
+
+const searchParams = useSearchParams() 
+
+useEffect(() => {
+  const guestId = searchParams.get("to") // contoh: /?to=1
+  if (!guestId) return
+
+  const fetchGuest = async () => {
+    try {
+      const res = await fetch(`https://undangundang.id/public/api/rsvp/${guestId}`)
+      if (!res.ok) throw new Error("Gagal fetch")
+      const data = await res.json()
+      setGuestName(data.name || "Tamu Undangan")
+      // setGuestAddress(data.address || "")
+    } catch (err) {
+      console.error("Gagal ambil data tamu:", err)
+      setGuestName("Tamu Undangan")
+      // setGuestAddress("")
+    }
+  }
+
+  fetchGuest()
+}, [searchParams]) // ✅ pakai variabel hasil hook
 
   return (
     <>
@@ -115,7 +143,7 @@ const Front = () => {
           >
             <p className="text-sm text-black">Dear</p>
             <p className="font-semibold text-lg text-black">
-              Mr. David and Ms. Natali
+              {guestName}
             </p>
             <p className="text-sm text-black">[Alamat Tamu]</p>
           </motion.div>
