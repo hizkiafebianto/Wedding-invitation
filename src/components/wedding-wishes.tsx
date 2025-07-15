@@ -97,7 +97,7 @@ export const WeddingWishes = () => {
 
   return (
     <section 
-        className="relative py-20 px-4 text-center text-lime-900 bg-fixed bg-center bg-cover"
+        className="relative py-20 px-4 text-center text-white bg-fixed bg-center bg-cover"
         style={{ backgroundImage: "url('/background/bgwishes.jpg')" }}
     >
 
@@ -125,7 +125,7 @@ export const WeddingWishes = () => {
             maxLength={MAX_CHAR}
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            className="text-lime-900"
+            className="text-white"
           />
 
           <div className="text-sm font-semibold text-white text-left">
@@ -147,7 +147,7 @@ export const WeddingWishes = () => {
                         key={i}
                         className="bg-white/90 p-4 rounded-xl shadow text-left backdrop-blur-md"
                     >
-                        <p className="font-bold">
+                        <p className="font-bold text-lime-900">
                             {wish.name}
                         </p>
                         <p className="text-sm text-lime-900">
@@ -164,7 +164,7 @@ export const WeddingWishes = () => {
         {visibleCount < wishes.length && (
           <Button
             variant="outline"
-            className="mt-4"
+            className="mt-4 text-lime-900 wrap-break-word"
             onClick={handleLoadMore}
           >
             Load More

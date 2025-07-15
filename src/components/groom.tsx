@@ -75,7 +75,7 @@ export const GroomSection = () => {
         </h2>
 
         {/* Nama orang tua */}
-        <p className="mt-2 text-lg text-center text-gray-600">
+        <p className="mt-2 text-lg text-center text-gray-600 gap-1">
           The Son of Mr. Tjhie Kwat Liang <br /> & Mrs. Ang Joe Nio
         </p>
 

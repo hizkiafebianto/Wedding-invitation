@@ -35,7 +35,8 @@ const Front = () => {
 
   const [guestId, setGuestId] = useState<string | null>(null);
   const [guestName, setGuestName] = useState("Tamu Undangan");
-  const [guestAddress, setGuestAddress] = useState("");
+  // const [guestNumber, setGuestNumber] = useState("");
+  // const [guestAddress, setGuestAddress] = useState("");
 
   useEffect(() => {
       const id = searchParams.get("to");
@@ -56,7 +57,7 @@ const Front = () => {
 
             const data = await res.json();
             setGuestName(data.name || "Tamu Undangan");
-            setGuestAddress(data.address || "");
+            // setGuestNumber(data.phone || "");
         } catch (err) {
             console.log("Gagal ambil data tamu", err)
         }
@@ -153,7 +154,7 @@ const Front = () => {
             <p className="font-semibold text-lg text-black">
               {guestName}
             </p>
-            <p className="text-sm text-black">{guestAddress}</p>
+            {/* <p className="text-sm text-black">{guestNumber}</p> */}
           </motion.div>
 
           <motion.div variants={fadeUp}>

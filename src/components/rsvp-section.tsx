@@ -73,14 +73,25 @@ export const RSVPSection = () => {
       return;
     }
 
+    // const payload = {
+    //   wedding_id: existingRSVP.wedding_id,
+    //   name: existingRSVP.name,
+    //   phone: existingRSVP.phone, 
+    //   address: existingRSVP.address,
+    //   status: attending === "yes" ? "Saya akan datang" : "Tidak bisa hadir",
+    //   amount: attending === "yes" ? guestCount : 0
+    // };
+
     const payload = {
-      wedding_id: 1,
-      name: existingRSVP.name,
-      phone: existingRSVP.phone,
-      address: existingRSVP.address,
-      status: attending === "yes" ? "Saya akan datang" : "Tidak bisa hadir",
-      amount: attending === "yes" ? guestCount : 0
+      status: attending === "yes" ? "Saya akan datang" : "Saya tidak bisa datang",
+      amount: attending === "yes" ? guestCount : 0,
     };
+     console.log(payload)
+
+// const payload: Partial<RSVPData> = {
+//   status: attending === "yes" ? "Saya akan datang" : "Tidak bisa hadir",
+//   ...(attending === "yes" ? { amount: guestCount } : {}),
+// };
 
     try {
       setLoading(true);
@@ -95,6 +106,11 @@ export const RSVPSection = () => {
           body: JSON.stringify(payload),
         }
       );
+
+//       const responseData = await res.json();
+// console.log("Response:", responseData);
+
+// if (!res.ok) throw new Error(`Failed: ${JSON.stringify(responseData)}`);
 
       if (!res.ok) throw new Error("Failed to update RSVP");
 
@@ -209,6 +225,8 @@ export const RSVPSection = () => {
               >
                 <Minus className="w-4 h-4" />
               </Button>
+             
+
               <span className="text-lg font-semibold w-10">{guestCount}</span>
               <Button
                 variant="outline"
