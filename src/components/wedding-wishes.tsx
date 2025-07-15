@@ -1,55 +1,111 @@
 "use client"
 
 import { greatVibes } from "@/app/font";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { Button } from "./ui/button";
-import Image from "next/image";
+import { formatDistanceToNow } from "date-fns";
+
 
 const MAX_CHAR = 300;
 const INITIAL_VISIBLE = 5;
+
+interface Wish {
+    id: number;
+    name: string;
+    address: string;
+    comment: string;
+    created_at: string;
+}
 
 export const WeddingWishes = () => {
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
   const [message, setMessage] = useState("");
-  const [wishes, setWishes] = useState([
-    { name: "Ronaldo", message: "Happy Wedding", time: "1 hour ago" },
-  ]);
-
+  const [wishes, setWishes] = useState<Wish[]>([]);
+  const [loading, setLoading] = useState(false);
   const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE);
 
-  const handleSubmit = () => {
-    if (!message) return;
-    setWishes([{ name, message, time: "Just Now" }, ...wishes]);
-    setName("");
-    setAddress("");
-    setMessage("");
-  };
+  useEffect(() =>{
+      const fetchWishes = async () => {
+          try {
+              setLoading(true);
+
+              const res = await fetch("https://undangundang.id/api/wishes");
+              if(!res.ok) throw new Error("Failed to etch wishes!")
+
+                  const data = await res.json();
+
+                  const sortedData = data.sort(
+                      (a: Wish, b: Wish) => 
+                          new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+                  )
+
+                  setWishes(sortedData)
+          } catch (err) {
+              console.log("Error fetch : ", err)
+          } finally {
+              setLoading(false)
+          }
+      }
+
+      fetchWishes();
+  }, [])
+
+  const handleSubmit = async () => {
+      if(!name || !message) {
+          return alert("Name and message are required!");
+      }
+
+      const newWish = {
+          wedding_id: 1,
+          name,
+          address,
+          comment: message,
+      }
+      try{
+          const res = await fetch("https://undangundang.id/api/wishes", {
+              method: "POST",
+              headers: {
+                  "Content-Type": "application/json",
+                  "Accept": "application/json"
+              },
+              body: JSON.stringify(newWish),
+          })
+
+          if (!res.ok) {
+              throw new Error("Failed to send wish");
+          }
+
+          const savedWish = await res.json()
+
+          setWishes([savedWish, ...wishes]);
+          setName("");
+          setAddress("");
+          setMessage("");
+      } catch (err) {
+          console.log("Error something wish:", err)
+          alert("Try again")
+      }
+  }
 
   const handleLoadMore = () => {
-    setVisibleCount((prev) => prev + 5);
-  };
+      setVisibleCount((prev) => prev + 5);
+  }
+
 
   return (
-    <section className="relative py-20 px-4 text-center text-lime-900">
-      {/* Background image */}
-      <div className="absolute inset-0 -z-10">
-        <Image
-          src="/background/bgwishes.jpg"
-          alt="Wedding Wishes Background"
-          fill
-          className="object-cover object-center"
-          quality={100}
-        />
-        {/* Optional overlay */}
-        <div className="absolute inset-0 bg-white/70" />
-      </div>
+    <section 
+        className="relative py-20 px-4 text-center text-lime-900 bg-fixed bg-center bg-cover"
+        style={{ backgroundImage: "url('/background/bgwishes.jpg')" }}
+    >
 
+      <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
+    
       {/* Main content */}
       <div className="max-w-xl mx-auto relative z-10">
-        <h2 className={`${greatVibes.className} text-5xl mb-6`}>
+        <h2 className={`${greatVibes.className} text-5xl mb-6 text-white`}>
           Wedding Wishes
         </h2>
 
@@ -72,8 +128,8 @@ export const WeddingWishes = () => {
             className="text-lime-900"
           />
 
-          <div className="text-sm font-semibold text-lime-900 text-left">
-            Characters left: {MAX_CHAR - message.length}
+          <div className="text-sm font-semibold text-white text-left">
+              Characters left: {MAX_CHAR - message.length}
           </div>
 
           <Button className="w-full" onClick={handleSubmit}>
@@ -82,18 +138,28 @@ export const WeddingWishes = () => {
         </div>
 
         {/* Wishes list */}
-        <div className="space-y-4">
-          {wishes.slice(0, visibleCount).map((wish, i) => (
-            <div
-              key={i}
-              className="bg-white/90 p-4 rounded shadow text-left backdrop-blur-sm"
-            >
-              <p className="font-bold">{wish.name}</p>
-              <p className="text-sm text-lime-900">{wish.message}</p>
-              <p className="text-xs text-lime-900 mt-1">{wish.time}</p>
+        {loading ? (
+            <p className="text-lime-900">Loading wishes...</p>
+        ) : (
+            <div className="space-y-4">
+                {wishes.slice(0, visibleCount).map((wish, i) => (
+                    <div
+                        key={i}
+                        className="bg-white/90 p-4 rounded-xl shadow text-left backdrop-blur-md"
+                    >
+                        <p className="font-bold">
+                            {wish.name}
+                        </p>
+                        <p className="text-sm text-lime-900">
+                            {wish.comment}
+                        </p>
+                        <p className="text-xs text-lime-900 mt-1">
+                            {formatDistanceToNow(new Date(wish.created_at), { addSuffix: true })}
+                        </p>
+                    </div>
+                ))}
             </div>
-          ))}
-        </div>
+        )}
 
         {visibleCount < wishes.length && (
           <Button

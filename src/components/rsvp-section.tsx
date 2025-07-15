@@ -1,35 +1,131 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { greatVibes } from "@/app/font"
-import { motion } from "framer-motion"
-import { Check, Minus, Plus } from "lucide-react"
+import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import { greatVibes } from "@/app/font";
+import { motion } from "framer-motion";
+import { Minus, Plus } from "lucide-react";
+import { useSearchParams } from "next/navigation";
+
+interface RSVPData {
+  id: number;
+  wedding_id: number;
+  name: string;
+  phone: string;
+  address: string;
+  status: string;
+  amount: number;
+}
 
 export const RSVPSection = () => {
-  const [attending, setAttending] = useState<"yes" | "no" | null>(null)
-  const [events, setEvents] = useState<string[]>([])
-  const [guestCount, setGuestCount] = useState(2)
-  const [submitted, setSubmitted] = useState(false)
+  const searchParams = useSearchParams();
+  const guestId = searchParams.get("to");
 
-  const toggleEvent = (event: string) => {
-    setEvents(prev =>
-      prev.includes(event) ? prev.filter(e => e !== event) : [...prev, event]
-    )
-  }
+  const [attending, setAttending] = useState<"yes" | "no" | null>(null);
+  const [guestCount, setGuestCount] = useState(1);
+  const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
-  const handleSubmit = () => {
-    if (attending === "yes") {
-      // Simulate submit
-      setSubmitted(true)
-    } else {
-      setSubmitted(true)
+  const [existingRSVP, setExistingRSVP] = useState<RSVPData | null>(null);
+
+  // ✅ Fetch data RSVP dari API
+  useEffect(() => {
+    if (!guestId) {
+      setErrorMsg("Guest ID tidak ditemukan.");
+      return;
     }
+
+    const fetchRSVP = async () => {
+      try {
+        setLoading(true);
+        const res = await fetch(`https://undangundang.id/api/rsvp/${guestId}`);
+        if (!res.ok) throw new Error("Gagal mengambil data RSVP");
+
+        const data = await res.json();
+        if (!data || !data.id) {
+          setErrorMsg("Undangan tidak ditemukan.");
+          return;
+        }
+
+        setExistingRSVP(data);
+        setSubmitted(!!data.status);
+        if (data.status) {
+          setAttending(data.status === "Saya akan datang" ? "yes" : "no");
+        }
+        if (data.amount) {
+          setGuestCount(data.amount);
+        }
+      } catch (err) {
+        console.error("Fetch error:", err);
+        setErrorMsg("Terjadi kesalahan saat mengambil data RSVP.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchRSVP();
+  }, [guestId]);
+
+  const handleSubmit = async () => {
+    if (!guestId || !existingRSVP) {
+      alert("Invalid Guest");
+      return;
+    }
+
+    const payload = {
+      wedding_id: 1,
+      name: existingRSVP.name,
+      phone: existingRSVP.phone,
+      address: existingRSVP.address,
+      status: attending === "yes" ? "Saya akan datang" : "Tidak bisa hadir",
+      amount: attending === "yes" ? guestCount : 0
+    };
+
+    try {
+      setLoading(true);
+      const res = await fetch(
+        `https://undangundang.id/api/rsvp/${existingRSVP.id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify(payload),
+        }
+      );
+
+      if (!res.ok) throw new Error("Failed to update RSVP");
+
+      const saved = await res.json();
+      setExistingRSVP(saved);
+      setSubmitted(true);
+    } catch (err) {
+      console.error("RSVP submit error:", err);
+      alert("Failed to save RSVP, try again!");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // ✅ Jika error
+  if (errorMsg) {
+    return (
+      <section className="text-center text-red-600 py-10">
+        <p>{errorMsg}</p>
+      </section>
+    );
   }
 
+  if (loading && !submitted) {
+    return <p className="text-center text-gray-500">Loading RSVP...</p>;
+  }
+
+  // ✅ Setelah Submit
   if (submitted) {
     return (
-      <section  className="px-4 text-center text-lime-900 relative">
+      <section className="px-4 text-center text-lime-900 relative">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -38,20 +134,39 @@ export const RSVPSection = () => {
         >
           <h2 className={`${greatVibes.className} text-5xl mb-2`}>RSVP</h2>
           <p className="mb-4 italic text-sm">
-            Please confirm your attendance before, <strong>Sept 27<sup>th</sup>, 2025</strong>
+            Please confirm your attendance before,{" "}
+            <strong>
+              Sept 27<sup>th</sup>, 2025
+            </strong>
           </p>
           <div className="border-2 p-4 rounded-lg bg-white text-center">
-            <h3 className="font-semibold text-lime-900 mb-1">Will Attend</h3>
-            <p className="text-sm">Yey! Thank you for the attendance...<br /> See you there :)</p>
-            <Button className="mt-4" variant="secondary" onClick={() => setSubmitted(false)}>Change</Button>
+            <h3 className="font-semibold text-lime-900 mb-1">
+              {attending === "yes" ? "Will Attend" : "Unable to Attend"}
+            </h3>
+            <p className="text-sm">
+              {attending === "yes"
+                ? `Thank you! ${guestCount} guest(s) confirmed.`
+                : `Sorry you can't make it.`}
+            </p>
+            <Button
+              className="mt-4"
+              variant="secondary"
+              onClick={() => setSubmitted(false)}
+            >
+              Change
+            </Button>
           </div>
         </motion.div>
       </section>
-    )
+    );
   }
 
+  // ✅ Form RSVP
   return (
-    <section id="rsvp" className="px-4 text-center text-lime-900 relative scroll-mt-48">
+    <section
+      id="rsvp"
+      className="px-4 text-center text-lime-900 relative scroll-mt-48"
+    >
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -60,10 +175,12 @@ export const RSVPSection = () => {
       >
         <h2 className={`${greatVibes.className} text-5xl mb-2`}>RSVP</h2>
         <p className="mb-6 italic text-sm">
-          Please confirm your attendance before, <strong>Sept 27<sup>th</sup>, 2025</strong>
+          Please confirm your attendance before,{" "}
+          <strong>
+            Sept 27<sup>th</sup>, 2025
+          </strong>
         </p>
 
-        {/* Will Attend */}
         <div className="flex justify-center gap-4 mb-6">
           <Button
             variant={attending === "yes" ? "default" : "outline"}
@@ -81,42 +198,23 @@ export const RSVPSection = () => {
           </Button>
         </div>
 
-        {/* Events */}
         {attending === "yes" && (
           <>
-            <p className="mb-2 font-medium">Which event will you attend?</p>
-            <div className="flex flex-col gap-2 mb-4">
-              {[
-                "Holy Matrimony",
-                "Reception"
-              ].map(event => (
-                <Button
-                  key={event}
-                  variant={events.includes(event) ? "default" : "outline"}
-                  className="justify-between"
-                  onClick={() => toggleEvent(event)}
-                >
-                  {event}
-                  {events.includes(event) && <Check className="w-4 h-4 ml-2" />}
-                </Button>
-              ))}
-              <Button
-                variant="secondary"
-                className="bg-lime-800 text-white hover:bg-lime-700"
-                onClick={() => setEvents(["Holy Matrimony", "Reception"])}
-              >
-                Attend All
-              </Button>
-            </div>
-
-            {/* Guest Count */}
             <p className="mb-2 font-medium">People you bring including you?</p>
             <div className="flex items-center justify-center gap-4 mb-6">
-              <Button variant="outline" size="icon" onClick={() => setGuestCount(c => Math.max(1, c - 1))}>
+              <Button
+                variant="outline"
+                size="icon"
+                onClick={() => setGuestCount((c) => Math.max(1, c - 1))}
+              >
                 <Minus className="w-4 h-4" />
               </Button>
               <span className="text-lg font-semibold w-10">{guestCount}</span>
-              <Button variant="outline" size="icon" onClick={() => setGuestCount(c => c + 1)}>
+              <Button
+                variant="outline"
+                size="icon"
+                onClick={() => setGuestCount((c) => c + 1)}
+              >
                 <Plus className="w-4 h-4" />
               </Button>
             </div>
@@ -124,13 +222,17 @@ export const RSVPSection = () => {
         )}
 
         <Button
-          disabled={attending === null}
+          disabled={attending === null || loading}
           className="bg-lime-800 text-white hover:bg-lime-700 w-full"
           onClick={handleSubmit}
         >
-          Confirm
+          {loading
+            ? "Saving..."
+            : existingRSVP
+            ? "Update RSVP"
+            : "Confirm RSVP"}
         </Button>
       </motion.div>
     </section>
-  )
-}
+  );
+};

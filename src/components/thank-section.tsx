@@ -20,7 +20,7 @@ export const ThankSection = () => {
       <div className="absolute inset-0 bg-white/80" />
 
       {/* Dekorasi bunga kiri-kanan */}
-      <Image
+      {/* <Image
         src="/left-flower.png"
         alt="Left Flower"
         width={200}
@@ -33,7 +33,7 @@ export const ThankSection = () => {
         width={200}
         height={400}
         className="absolute -right-8 -bottom-10 z-0"
-      />
+      /> */}
 
       <motion.div
         initial={{ opacity: 0, y: 30 }}

@@ -31,39 +31,47 @@ const staggerContainer = {
 const Front = () => {
   const audioRef = useRef<HTMLAudioElement>(null)
   const router = useRouter()
+  const searchParams = useSearchParams();
+
+  const [guestId, setGuestId] = useState<string | null>(null);
+  const [guestName, setGuestName] = useState("Tamu Undangan");
+  const [guestAddress, setGuestAddress] = useState("");
+
+  useEffect(() => {
+      const id = searchParams.get("to");
+      if (id) {
+          setGuestId(id)
+      }
+  }, [searchParams])
+
+  useEffect(() => {
+     if(!guestId) return;
+
+     const fetchGuest = async () => {
+        try {
+            const res = await fetch(`https://undangundang.id/api/rsvp/${guestId}`)
+            if(!res.ok) {
+                throw new Error("Gagal")
+            }
+
+            const data = await res.json();
+            setGuestName(data.name || "Tamu Undangan");
+            setGuestAddress(data.address || "");
+        } catch (err) {
+            console.log("Gagal ambil data tamu", err)
+        }
+     }
+     fetchGuest()
+  }, [guestId])
 
   const handleOpen = () => {
-    if (typeof window !== "undefined") {
-      window.localStorage.setItem("shouldPlayAudio", "true")
-    }
-    router.push("/invitation")
+      if(typeof window !== "undefined") {
+          window.localStorage.setItem("shouldPlayAudio", "true")
+      }
+
+      const url = guestId ? `/invitation?to=${guestId}` : "/invitation"
+      router.push(url)
   }
-
-const [guestName, setGuestName] = useState("Tamu Undangan")
-// const [guestAddress, setGuestAddress] = useState("")
-
-const searchParams = useSearchParams() 
-
-useEffect(() => {
-  const guestId = searchParams.get("to") // contoh: /?to=1
-  if (!guestId) return
-
-  const fetchGuest = async () => {
-    try {
-      const res = await fetch(`https://undangundang.id/public/api/rsvp/${guestId}`)
-      if (!res.ok) throw new Error("Gagal fetch")
-      const data = await res.json()
-      setGuestName(data.name || "Tamu Undangan")
-      // setGuestAddress(data.address || "")
-    } catch (err) {
-      console.error("Gagal ambil data tamu:", err)
-      setGuestName("Tamu Undangan")
-      // setGuestAddress("")
-    }
-  }
-
-  fetchGuest()
-}, [searchParams]) // ✅ pakai variabel hasil hook
 
   return (
     <>
@@ -145,7 +153,7 @@ useEffect(() => {
             <p className="font-semibold text-lg text-black">
               {guestName}
             </p>
-            <p className="text-sm text-black">[Alamat Tamu]</p>
+            <p className="text-sm text-black">{guestAddress}</p>
           </motion.div>
 
           <motion.div variants={fadeUp}>
