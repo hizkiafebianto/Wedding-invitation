@@ -6,6 +6,7 @@ import { AudioPlayer } from "@/components/audio-player"
 export const AudioProvider = () => {
   const audioRef = useRef<HTMLAudioElement | null>(null)
   const [shouldPlay, setShouldPlay] = useState(false)
+  const [stoppedByScroll, setStoppedByScroll] = useState(false)
 
   useEffect(() => {
     const should = window.localStorage.getItem("shouldPlayAudio")
@@ -24,10 +25,32 @@ export const AudioProvider = () => {
     }
   }, [shouldPlay])
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (audioRef.current && !stoppedByScroll) {
+        audioRef.current.pause()
+        audioRef.current.currentTime = 0
+        setShouldPlay(false)
+        setStoppedByScroll(true)
+      }
+    }
+
+    const scrollTarget = document.getElementById("scrollable-right")
+    if(scrollTarget) {
+      scrollTarget.addEventListener("scroll", handleScroll, { passive: true })
+    }
+
+    return () => {
+      if (scrollTarget) {
+        scrollTarget.removeEventListener("scroll", handleScroll)
+      }
+    }
+  }, [stoppedByScroll])
+
   return (
     <>
       <audio ref={audioRef} src="/audio/audio.mp3" loop preload="auto" muted />
-      {shouldPlay && <AudioPlayer audioRef={audioRef} />}
+      {shouldPlay && !stoppedByScroll && <AudioPlayer audioRef={audioRef} />}
     </>
   )
 }

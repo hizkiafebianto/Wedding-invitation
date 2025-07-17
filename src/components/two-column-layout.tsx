@@ -98,7 +98,7 @@ export const TwoColumnLayout = ({ children }: Props) => {
       </div>
 
       {/* Scrollable Right Side */}
-      <div className="ml-auto w-full md:w-4/12 h-screen overflow-y-auto z-10 bg-tembok">
+      <div id="scrollable-right" className="ml-auto w-full md:w-4/12 h-screen overflow-y-auto z-10 bg-tembok">
         {children}
       </div>
     </div>
