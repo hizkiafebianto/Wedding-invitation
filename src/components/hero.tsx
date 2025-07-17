@@ -18,22 +18,19 @@ export const Hero = () => {
   }, []);
 
   const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 30 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: "easeOut" },
-  },
-}
+    hidden: { opacity: 0, y: 30 },
+    show: { opacity: 1, y: 0, transition: { duration: 1, ease: "easeOut" } },
+  };
 
-const staggerContainer = {
-  hidden: {},
-  show: {
-    transition: {
-      staggerChildren: 0.15,
+
+  const staggerContainer = {
+    hidden: {},
+    show: {
+      transition: {
+        staggerChildren: 0.15,
+      },
     },
-  },
-}
+  }
 
   return (
     <section className="flex flex-col items-center text-center">
@@ -52,29 +49,29 @@ const staggerContainer = {
           viewport={{ once: true, amount: 0.3 }}
         >
           <Image 
-              src="/bunga/frame-left (3).png" 
+              src="/bunga/bunga-hero - Copy.png" 
               alt="Bunga Kiri" 
               width={200} 
               height={200} 
-              className="absolute -top-6 -left-6 translate-x-[-30%] w-48 lg:w-60 h-auto animate-sway z-10" 
+              className="absolute -top-3 -left-20 w-48 lg:w-60 h-auto animate-sway z-10" 
           />
         </motion.div>
           <Image 
-              src="/bunga/frame-left (4).png" 
+              src="/bunga/bunga-hero.png" 
               alt="Bunga Kanan" 
               width={200} 
               height={200} 
-              className="absolute -top-6 -right-6 translate-x-[30%] w-48 lg:w-60 h-auto animate-sway z-10" 
+              className="absolute -top-3 -right-20 w-48 lg:w-60 h-auto animate-sway z-10" 
           />
           <Image 
-              src="/bunga/hero.png" 
+              src="/bunga/bunga-hero-kanan.png" 
               alt="Bunga Kanan" 
               width={300} 
               height={300} 
               className="absolute top-16 -right-16 w-48 lg:w-60 animate-sway" 
           />
           <Image 
-              src="/bunga/hero-1.png" 
+              src="/bunga/bunga-hero-kiri.png" 
               alt="Bunga Kiri" 
               width={200} 
               height={200} 
