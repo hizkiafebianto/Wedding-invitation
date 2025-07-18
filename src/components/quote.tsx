@@ -14,8 +14,7 @@ export const Quote = () => {
             </p>
 
             {/* Image background */}
-            <div className="relative w-full h-[280px]">
-                
+            <div className="relative w-full h-[280px]"> 
                 <Image 
                     src="/image_quote/quote.png"
                     alt="Gazebo"
@@ -23,8 +22,6 @@ export const Quote = () => {
                     height={700}
                     className="object-contain lg:-translate-y-32 -translate-y-24 z-0"
                 />
-
-                
             </div>
         </section>
     )

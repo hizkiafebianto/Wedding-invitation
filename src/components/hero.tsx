@@ -49,7 +49,7 @@ export const Hero = () => {
           viewport={{ once: true, amount: 0.3 }}
         >
           <Image 
-              src="/bunga/bunga-hero - Copy.png" 
+              src="/bunga/wisteria_flower _kiri.png" 
               alt="Bunga Kiri" 
               width={200} 
               height={200} 
@@ -57,25 +57,25 @@ export const Hero = () => {
           />
         </motion.div>
           <Image 
-              src="/bunga/bunga-hero.png" 
+              src="/bunga/wisteria_flower.png" 
               alt="Bunga Kanan" 
               width={200} 
               height={200} 
               className="absolute -top-3 -right-20 w-48 lg:w-60 h-auto animate-sway z-10" 
           />
           <Image 
-              src="/bunga/bunga-hero-kanan.png" 
+              src="/bunga/wisteria_hero_kanan.png" 
               alt="Bunga Kanan" 
               width={300} 
               height={300} 
-              className="absolute top-16 -right-16 w-48 lg:w-60 animate-sway" 
+              className="absolute top-10 -right-14 w-48 lg:w-60 animate-sway" 
           />
           <Image 
-              src="/bunga/bunga-hero-kiri.png" 
+              src="/bunga/wisteria_hero_kiri.png" 
               alt="Bunga Kiri" 
               width={200} 
               height={200} 
-              className="absolute top-16 -left-16 w-48 lg:w-60 h-auto animate-sway" 
+              className="absolute top-10 -left-16 w-48 lg:w-60 h-auto animate-sway" 
           />
           <Image 
               src="/image/logo.png" 

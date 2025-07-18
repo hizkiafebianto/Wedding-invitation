@@ -10,6 +10,8 @@ const images = [
   "/gallery/galeri1.jpg",
   "/gallery/galeri2.jpg",
   "/gallery/galeri3.jpg",
+  "/gallery/galeri4.jpg",
+  "/gallery/galeri5.jpg",
   "/gallery/galeri6.jpg",
 ]
 
@@ -23,7 +25,8 @@ export const Gallery = () => {
   const [selected, setSelected] = useState<string | null>(null)
 
   return (
-    <section className="py-16 px-4 mt-16">
+    <section className="py-16 px-4 mt-16 overflow-hidden">
+
       <h2 className={`text-5xl ${greatVibes.className} text-center font-semibold text-lime-900 mb-8`}>Our Gallery</h2>
 
       <div 

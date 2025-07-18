@@ -3,7 +3,7 @@ import { Button } from "./ui/button"
 
 export const WeddingStreaming = () => {
   return (
-    <section className="py-16 px-4 bg-tembok text-center">
+    <section className="py-16 px-4 text-center">
         <h2 className={`text-5xl ${greatVibes.className} font-semibold text-lime-900 mb-8`}>Live Streaming</h2>
 
         <div className="relative w-full max-w-4xl aspect-video mx-auto rounded-lg overflow-hidden shadow-lg">

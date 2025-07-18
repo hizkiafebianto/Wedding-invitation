@@ -45,7 +45,6 @@ export const TwoColumnLayout = ({ children }: Props) => {
               <h1 className={`${greatVibes.className} text-8xl font-script drop-shadow-md`}>
                 Yushellia
               </h1>
-              <p className="mt-4 text-sm">Hai Katsudoto</p>
             </div>
           </div>
 

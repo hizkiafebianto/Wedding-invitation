@@ -44,7 +44,7 @@ export const Countdown = () => {
   }, [])
 
   return (
-    <section className="relative w-full py-28 px-4 text-center overflow-hidden mb-32 lg:mb-48 mt-16 lg:mt-48">
+    <section className="relative w-full py-28 px-4 text-center overflow-hidden mb-8 mt-16 lg:mt-48">
       <div className="absolute inset-0 flex justify-center items-center z-0 pointer-events-none">
         <Image 
           src="/countdown/countdown.png"
