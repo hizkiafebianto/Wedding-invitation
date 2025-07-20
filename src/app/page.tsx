@@ -1,9 +1,9 @@
-import Front from "@/components/front";
+import Front from '@/components/front';
 
 export default function Home() {
-  return (
-    <div>
-      <Front />
-    </div>
-  )
+    return (
+        <div>
+            <Front />
+        </div>
+    );
 }
