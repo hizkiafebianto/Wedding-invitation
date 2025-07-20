@@ -7,6 +7,7 @@ import { container, item } from '@/utils/animations';
 export const Quote = () => {
     return (
         <motion.section
+            id="quote"
             variants={container}
             initial="hidden"
             whileInView="show"

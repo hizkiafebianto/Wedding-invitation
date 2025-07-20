@@ -33,7 +33,7 @@ export const GiftSection = () => {
     };
 
     return (
-        <section className="relative px-4 py-20 text-center text-lime-900">
+        <section id="gift" className="relative px-4 py-20 text-center text-lime-900">
             <div className="mx-auto max-w-xl rounded-xl bg-white/70 p-6 shadow-md">
                 <h2 className={`mb-4 font-serif text-5xl ${greatVibes.className}`}>E-Gift</h2>
                 <p className="mb-6 text-sm">

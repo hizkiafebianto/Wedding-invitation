@@ -1,9 +1,7 @@
 'use client';
 
-import { useKeenSlider } from 'keen-slider/react';
-import 'keen-slider/keen-slider.min.css';
-import Image from 'next/image';
 import { useState } from 'react';
+import Image from 'next/image';
 import { greatVibes } from '@/app/font';
 
 const images = [
@@ -16,56 +14,49 @@ const images = [
 ];
 
 export const Gallery = () => {
-    const [sliderRef] = useKeenSlider<HTMLDivElement>({
-        loop: true,
-        mode: 'free-snap',
-        slides: { perView: 1.2, spacing: 15 },
-    });
-
-    const [selected, setSelected] = useState<string | null>(null);
+    const [selected, setSelected] = useState<string>(images[0]); // default image
 
     return (
-        <section className="mt-16 overflow-hidden px-4 py-16">
+        <section id="gallery" className="mt-16 px-4 py-16">
             <h2
                 className={`text-5xl ${greatVibes.className} mb-8 text-center font-semibold text-lime-900`}
             >
                 Our Gallery
             </h2>
 
-            <div ref={sliderRef} className="keen-slider">
+            {/* Gambar utama */}
+            <div className="mb-6 flex justify-center">
+                <div className="relative w-full max-w-4xl aspect-[3/4] overflow-hidden rounded-2xl shadow-lg">
+                    <Image
+                        src={selected}
+                        alt="Main Preview"
+                        fill
+                        className="object-cover object-center"
+                    />
+                </div>
+            </div>
+
+            {/* Thumbnail */}
+            <div className="flex gap-4 w-full overflow-x-auto px-2 scrollbar-hide">
                 {images.map((src, i) => (
-                    <div key={i} className="keen-slider__slide">
-                        <div className="relative aspect-[4/3] w-full cursor-pointer overflow-hidden rounded-xl shadow-md">
-                            <Image
-                                src={src}
-                                alt={`Gallery ${i + 1}`}
-                                width={400}
-                                height={300}
-                                className="h-60 w-full cursor-pointer rounded-xl object-cover shadow-md"
-                                onClick={() => setSelected(src)}
-                            />
-                        </div>
+                    <div
+                        key={i}
+                        className={`relative h-24 w-24 flex-shrink-0 cursor-pointer overflow-hidden rounded-xl border-2 ${
+                            selected === src
+                                ? 'border-lime-700'
+                                : 'border-transparent'
+                        }`}
+                        onClick={() => setSelected(src)}
+                    >
+                        <Image
+                            src={src}
+                            alt={`Thumbnail ${i + 1}`}
+                            fill
+                            className="object-cover hover:opacity-80 transition"
+                        />
                     </div>
                 ))}
             </div>
-
-            {/* Preview Modal */}
-            {selected && (
-                <div
-                    className="fixed inset-0 z-50 flex items-center justify-center bg-black/70"
-                    onClick={() => setSelected(null)}
-                >
-                    <div className="w-full max-w-4xl px-4">
-                        <Image
-                            src={selected}
-                            alt="Preview"
-                            width={1200}
-                            height={800}
-                            className="mx-auto max-h-[90vh] rounded-xl"
-                        />
-                    </div>
-                </div>
-            )}
         </section>
     );
 };

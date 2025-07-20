@@ -8,7 +8,7 @@ import Link from 'next/link';
 
 export const EventHoly = () => {
     return (
-        <section className="relative h-screen w-full overflow-hidden">
+        <section id="event-holy" className="relative h-screen w-full overflow-hidden">
             {/* Background Image */}
             <div className="absolute inset-0 -z-10">
                 <Image

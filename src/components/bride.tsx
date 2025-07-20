@@ -8,7 +8,7 @@ import { container, item } from '@/utils/animations';
 
 export const BrideSection = () => {
     return (
-        <section className="relative w-full overflow-x-hidden pt-56 pb-24">
+        <section id="bride" className="relative w-full overflow-x-hidden pt-56 pb-24">
             <div className="relative z-0 flex flex-col">
                 {/* Foto bride dalam frame lingkaran */}
                 <div className="flex justify-start">
@@ -55,7 +55,7 @@ export const BrideSection = () => {
                     initial="hidden"
                     whileInView="show"
                     viewport={{ once: false, amount: 0.3 }}
-                    className="bg-green-600 pb-6"
+                    className="pb-6"
                 >
                     {/* Nama mempelai */}
                     <motion.h2

@@ -34,7 +34,7 @@ export const OurStory = () => {
     const story = stories[current];
 
     return (
-        <section className="relative z-10 w-full overflow-hidden px-12 py-20 text-center">
+        <section id="our-story" className="relative z-10 w-full overflow-hidden px-12 py-20 text-center">
             <h2 className={`text-5xl ${greatVibes.className} mb-12 text-white`}>Our Story</h2>
 
             <div className="absolute inset-0 -z-10">

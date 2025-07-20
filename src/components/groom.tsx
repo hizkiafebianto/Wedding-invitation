@@ -11,6 +11,7 @@ export const GroomSection = () => {
 
     return (
         <section
+            id="groom"
             className="relative w-full overflow-x-hidden pt-56"
             style={{ overflowY: 'visible' }}
         >
@@ -68,7 +69,7 @@ export const GroomSection = () => {
                     initial="hidden"
                     whileInView="show"
                     viewport={{ once: false, amount: 0.3 }}
-                    className="pointer-events-none absolute top-32 z-40 lg:left-24"
+                    className="pointer-events-none absolute top-32 z-10 lg:left-24"
                 >
                     <Image
                         src="/bunga/flower_groom123.png"

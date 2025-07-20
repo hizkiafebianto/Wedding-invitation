@@ -199,13 +199,13 @@
         transform: translate(0px, 0px) rotate(0deg);
     }
     25% {
-        transform: translate(4px, -2px) rotate(1deg);
+        transform: translate(0px, 0px) rotate(2deg);
     }
     50% {
-        transform: translate(0px, 2px) rotate(0deg);
+        transform: translate(0px, 0px) rotate(0deg);
     }
     75% {
-        transform: translate(-4px, -2px) rotate(-1deg);
+        transform: translate(0px, 0px) rotate(-2deg);
     }
     100% {
         transform: translate(0px, 0px) rotate(0deg);
@@ -214,6 +214,7 @@
 
 .animate-sway {
     animation: sway 6s ease-in-out infinite;
+    transform-origin: bottom;
 }
 
 .bg-tembok {
@@ -221,6 +222,15 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+}
+
+.scrollbar-hide::-webkit-scrollbar{
+    display: none;
+}
+
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
 /* #FBBDD0 => Peach */

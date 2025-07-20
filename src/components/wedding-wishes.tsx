@@ -95,6 +95,7 @@ export const WeddingWishes = () => {
 
     return (
         <section
+            id="wedding-wishes"
             className="relative bg-cover bg-fixed bg-center px-4 py-20 text-center text-white"
             style={{ backgroundImage: "url('/background/bgwishes.jpg')" }}
         >

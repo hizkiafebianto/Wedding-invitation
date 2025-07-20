@@ -18,7 +18,7 @@ export const Hero = () => {
     }, []);
 
     return (
-        <section className="flex flex-col items-center text-center">
+        <section id="hero" className="flex flex-col items-center text-center">
             {/* Logo & bunga atas */}
             <motion.div
                 className="relative z-10 flex w-full flex-col items-center overflow-hidden pt-40 pb-20"

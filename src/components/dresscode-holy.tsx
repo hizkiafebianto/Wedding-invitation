@@ -22,7 +22,7 @@ const dresscodeData = [
 
 export const EventDresscode = () => {
     return (
-        <section className="relative mb-24 w-full overflow-hidden px-4 py-20 text-center text-lime-900">
+        <section id="dresscode" className="relative mb-24 w-full overflow-hidden px-4 py-20 text-center text-lime-900">
             {/* Background Image */}
             <div className="pointer-events-none absolute inset-0 z-0">
                 <Image

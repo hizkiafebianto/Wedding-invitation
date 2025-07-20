@@ -8,7 +8,7 @@ import Link from 'next/link';
 
 export const EventWedding = () => {
     return (
-        <section className="relative h-screen w-full overflow-hidden">
+        <section id="event-wedding" className="relative h-screen w-full overflow-hidden">
             {/* Background Image */}
             <div className="absolute inset-0 -z-10">
                 <Image

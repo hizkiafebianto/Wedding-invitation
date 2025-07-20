@@ -3,30 +3,56 @@
 import { useEffect } from "react";
 
 export default function ScrollRestoration() {
-  useEffect(() => {
-    // Pastikan manual mode supaya browser nggak override
-    if ("scrollRestoration" in history) {
-      history.scrollRestoration = "manual";
-    }
+    useEffect(() => {
+        if ("scrollRestoration" in history) {
+            history.scrollRestoration = "manual";
+        }
 
-    // Simpan posisi sebelum refresh
-    const handleBeforeUnload = () => {
-      sessionStorage.setItem("scrollY", String(window.scrollY));
-    };
-    window.addEventListener("beforeunload", handleBeforeUnload);
+        const saveScroll = () => {
+            sessionStorage.setItem("scrollY", String(window.scrollY));
 
-    // Setelah render selesai, restore posisi
-    const storedScrollY = sessionStorage.getItem("scrollY");
-    if (storedScrollY) {
-      setTimeout(() => {
-        window.scrollTo(0, parseInt(storedScrollY, 10));
-      }, 100); // kasih delay biar Next.js selesai render
-    }
+        // Simpan ID section yang terlihat
+            const sections = document.querySelectorAll("section[id]");
+            let activeSection = "";
+            sections.forEach((sec) => {
+                const rect = sec.getBoundingClientRect();
+                if (rect.top >= 0 && rect.top < window.innerHeight / 2) {
+                    activeSection = sec.id;
+                }
+            });
+            if (activeSection) {
+                sessionStorage.setItem("last-section", activeSection);
+            }
+        };
 
-    return () => {
-      window.removeEventListener("beforeunload", handleBeforeUnload);
-    };
-  }, []);
+        window.addEventListener("scroll", saveScroll);
+        window.addEventListener("beforeunload", saveScroll);
 
-  return null;
+        const restoreScroll = () => {
+            const lastSection = sessionStorage.getItem("last-section");
+            if (lastSection) {
+                const el = document.getElementById(lastSection);
+                if (el) {
+                    el.scrollIntoView({ behavior: "smooth", block: "start" });
+                return;
+                }
+            }
+
+            const storedY = sessionStorage.getItem("scrollY");
+            if (storedY) {
+                window.scrollTo(0, parseInt(storedY, 10));
+            }
+        };
+
+        // Tunggu sampai Next.js hydration selesai
+        const timeout = setTimeout(restoreScroll, 700);
+
+        return () => {
+            clearTimeout(timeout);
+            window.removeEventListener("scroll", saveScroll);
+            window.removeEventListener("beforeunload", saveScroll);
+        };
+    }, []);
+
+    return null;
 }

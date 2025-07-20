@@ -6,7 +6,7 @@ import { greatVibes } from '@/app/font';
 
 export const ThankSection = () => {
     return (
-        <section className="relative min-h-screen w-full overflow-hidden px-4 py-20 text-center text-lime-900">
+        <section id="thank-section" className="relative min-h-screen w-full overflow-hidden px-4 py-20 text-center text-lime-900">
             {/* Background bunga dan daun */}
             <div className="absolute inset-0 -z-10">
                 <Image
