@@ -116,10 +116,20 @@
     * {
         @apply border-border outline-ring/50;
     }
-    body {
+    html {
         @apply bg-background text-foreground;
+        scrollbar-width: none; /* Firefox */
+    }
+    body {
+        @apply overflow-auto;
     }
 }
+
+::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+
+
 
 @keyframes shrink {
     0% {

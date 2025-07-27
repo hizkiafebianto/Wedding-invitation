@@ -125,7 +125,7 @@ export const RSVPSection = () => {
     // ✅ Jika error
     if (errorMsg) {
         return (
-            <section className="py-10 text-center text-red-600">
+            <section id="rsvp" className="py-10 text-center text-red-600">
                 <p>{errorMsg}</p>
             </section>
         );
@@ -135,7 +135,7 @@ export const RSVPSection = () => {
         return <p className="text-center text-gray-500">Loading RSVP...</p>;
     }
 
-    // ✅ Setelah Submit
+    // ✅ Setelah Submitx
     if (submitted) {
         return (
             <section id="rsvp" className="relative px-4 text-center text-lime-900">

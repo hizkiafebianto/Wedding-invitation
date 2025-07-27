@@ -27,7 +27,15 @@ export const Hero = () => {
                 whileInView="show"
                 viewport={{ once: false, amount: 0.3 }}
             >
-                <motion.div
+                <div className="top-0 absolute left-0 w-full">
+                    <Image 
+                        src="/svg/1.svg"
+                        alt="Bunga Atas"
+                        width={500}
+                        height={500}
+                    />
+                </div>
+                {/* <motion.div
                     variants={createDelayVariants('right')}
                     initial="hidden"
                     whileInView="show"
@@ -42,9 +50,9 @@ export const Hero = () => {
                         className="animate-sway h-auto w-48 lg:w-60"
                         style={{ animationDelay: getRandomDelay() }}
                     />
-                </motion.div>
+                </motion.div> */}
 
-                <motion.div
+                {/* <motion.div
                     variants={createDelayVariants('left')}
                     // variants={fadeIn}
                     initial="hidden"
@@ -60,9 +68,9 @@ export const Hero = () => {
                         className="animate-sway z-10 h-auto w-48 lg:w-60"
                         style={{ animationDelay: getRandomDelay() }}
                     />
-                </motion.div>
+                </motion.div> */}
 
-                <motion.div
+                {/* <motion.div
                     variants={createDelayVariants('left')}
                     initial="hidden"
                     whileInView="show"
@@ -77,9 +85,9 @@ export const Hero = () => {
                         className="animate-sway w-48 lg:w-60"
                         style={{ animationDelay: getRandomDelay() }}
                     />
-                </motion.div>
+                </motion.div> */}
 
-                <motion.div
+                {/* <motion.div
                     variants={createDelayVariants('right')}
                     initial="hidden"
                     whileInView="show"
@@ -94,8 +102,25 @@ export const Hero = () => {
                         className="animate-sway h-auto w-48 lg:w-60"
                         style={{ animationDelay: getRandomDelay() }}
                     />
-                </motion.div>
+                </motion.div> */}
 
+                <motion.div
+                    variants={createDelayVariants('right')}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: false, amount: 0.3 }}
+                    className="absolute -right-16"
+                >
+                    <Image
+                        src="/svg/2.svg"
+                        alt="Bunga Kanan"
+                        width={200}
+                        height={200}
+                        className="animate-sway h-auto w-48 lg:w-60"
+                        style={{ animationDelay: getRandomDelay() }}
+                    />
+                </motion.div>
+                
                 <motion.div
                     variants={fadeIn}
                     initial="hidden"
@@ -108,7 +133,7 @@ export const Hero = () => {
                         alt="Logo"
                         width={500}
                         height={500}
-                        className="z-20 -mt-36 w-9/12"
+                        className="z-20 -mt-14 w-9/12"
                     />
                 </motion.div>
             </motion.div>

@@ -3,6 +3,7 @@
 import { greatVibes } from '@/app/font';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 
 interface TimeLeft {
     days: number;
@@ -107,16 +108,36 @@ export const Countdown = () => {
                     { label: 'hours', value: timeLeft.hours },
                     { label: 'minutes', value: timeLeft.minutes },
                     { label: 'seconds', value: timeLeft.seconds },
-                ].map(({ label, value }) => (
-                    <div key={label} className="flex items-center not-only:flex-col">
-                        <div className="flex h-20 w-20 items-center justify-center rounded-full shadow">
-                            <span className={`${greatVibes.className} text-5xl font-bold`}>
-                                {value.toString().padStart(2, '0')}
-                            </span>
-                        </div>
-                        <span className="-mt-4 mb-8 text-xs font-medium md:text-sm">{label}</span>
-                    </div>
-                ))}
+                ].map(({ label, value }, idx) => {
+                    const position = [
+                        { x: -150, y: -150 },
+                        { x: 150, y: -150 },
+                        { x: -150, y: 150 },
+                        { x: 150, y: 150 },
+                    ]
+
+                    return (
+                        <motion.div 
+                            key={label} 
+                            className="flex items-center flex-col"
+                            initial={{ 
+                                opacity: 0, 
+                                x: position[idx].x,
+                                y: position[idx].y
+                            }}
+                            whileInView={{ opacity: 1, x: 0,  y: 0 }}
+                            viewport={{ once: true, amount: 0.4 }}
+                            transition={{ duration: 3, ease: "easeOut" }}
+                        >
+                            <div className="flex h-20 w-20 items-center justify-center rounded-full shadow">
+                                <span className={`${greatVibes.className} text-5xl font-bold`}>
+                                    {value.toString().padStart(2, '0')}
+                                </span>
+                            </div>
+                            <span className="-mt-4 mb-8 text-xs font-medium md:text-sm">{label}</span>
+                        </motion.div>
+                    )
+                })}
             </div>
         </section>
     );

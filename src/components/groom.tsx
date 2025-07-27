@@ -56,7 +56,7 @@ export const GroomSection = () => {
                     viewport={{ once: false, amount: 0.3 }} 
                     className="pointer-events-none absolute rotate-12 -top-48 -left-36 -z-10 lg:-top-44 lg:-left-32">
                     <Image
-                        src="/bunga/dafodil_side.png"
+                        src="/bunga/wisteria_groom000.png"
                         alt="Bunga Kiri"
                         width={300}
                         height={300}
