@@ -35,9 +35,9 @@ export const OurStory = () => {
 
     return (
         <section id="our-story" className="relative z-10 w-full overflow-hidden px-12 py-20 text-center">
-            <h2 className={`text-5xl ${greatVibes.className} mb-12 text-white`}>Our Story</h2>
+            <h2 className={`text-5xl ${greatVibes.className} mb-12 text-lime-900`}>Our Story</h2>
 
-            <div className="absolute inset-0 -z-10">
+            {/* <div className="absolute inset-0 -z-10">
                 <Image
                     src="/ourstory/bg.jpg"
                     alt="Holy Matrimony Background"
@@ -45,10 +45,10 @@ export const OurStory = () => {
                     objectFit="cover"
                     priority
                 />
-            </div>
+            </div> */}
 
             {/* Blur Overlay */}
-            <div className="absolute inset-0 -z-10 bg-black/40 backdrop-blur-sm" />
+            {/* <div className="absolute inset-0 -z-10 bg-black/40 backdrop-blur-sm" /> */}
 
             <div className="relative mx-auto flex min-h-[500px] max-w-xl flex-col justify-start rounded-lg bg-white p-6 shadow-lg md:min-h-[600px]">
                 {/* Gambar */}
@@ -67,16 +67,16 @@ export const OurStory = () => {
                 {/* Navigasi */}
                 <button
                     onClick={prevStory}
-                    className="absolute top-1/2 left-8 -translate-y-16 transform rounded-full bg-white p-2 shadow hover:bg-lime-100"
+                    className="absolute top-5/12 left-8 -translate-y-16 transform rounded-full bg-white p-2 shadow hover:bg-lime-300"
                 >
-                    <ChevronLeft size={24} />
+                    <ChevronLeft size={20} className="text-lime-900" />
                 </button>
 
                 <button
                     onClick={nextStory}
-                    className="absolute top-1/2 right-8 -translate-y-16 transform rounded-full bg-white p-2 shadow hover:bg-lime-100"
+                    className="absolute top-5/12 right-8 -translate-y-16 transform rounded-full bg-white p-2 shadow hover:bg-lime-300"
                 >
-                    <ChevronRight size={24} />
+                    <ChevronRight size={20} className="text-lime-900" />
                 </button>
 
                 {/* Indikator */}
@@ -84,7 +84,7 @@ export const OurStory = () => {
                     {stories.map((_, i) => (
                         <div
                             key={i}
-                            className={`h-2 w-2 rounded-full ${i === current ? 'bg-lime-600' : 'bg-gray-300'}`}
+                            className={`h-2 w-2 rounded-full ${i === current ? 'bg-lime-900' : 'bg-gray-300'}`}
                         />
                     ))}
                 </div>

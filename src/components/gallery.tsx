@@ -21,7 +21,7 @@ export const Gallery = () => {
             <h2
                 className={`text-5xl ${greatVibes.className} mb-8 text-center font-semibold text-lime-900`}
             >
-                Our Gallery
+                Potrait Of Us
             </h2>
 
             {/* Gambar utama */}
@@ -41,7 +41,7 @@ export const Gallery = () => {
                 {images.map((src, i) => (
                     <div
                         key={i}
-                        className={`relative h-24 w-24 flex-shrink-0 cursor-pointer overflow-hidden rounded-xl border-2 ${
+                        className={`relative h-36 w-24 flex-shrink-0 cursor-pointer overflow-hidden rounded-xl border-2 ${
                             selected === src
                                 ? 'border-lime-700'
                                 : 'border-transparent'

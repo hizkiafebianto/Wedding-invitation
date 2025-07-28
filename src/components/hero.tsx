@@ -20,16 +20,16 @@ export const Hero = () => {
     return (
         <section id="hero" className="flex flex-col items-center text-center">
             {/* Logo & bunga atas */}
-            <motion.div
+            <div
                 className="relative z-10 flex w-full flex-col items-center overflow-hidden pt-40 pb-20"
-                variants={container}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: false, amount: 0.3 }}
+                // variants={container}
+                // initial="hidden"
+                // whileInView="show"
+                // viewport={{ once: false, amount: 0.3 }}
             >
                 <div className="top-0 absolute left-0 w-full">
                     <Image 
-                        src="/svg/1.svg"
+                        src="/png/1.png"
                         alt="Bunga Atas"
                         width={500}
                         height={500}
@@ -103,23 +103,41 @@ export const Hero = () => {
                         style={{ animationDelay: getRandomDelay() }}
                     />
                 </motion.div> */}
+                
+                    <div
+                        // variants={createDelayVariants('right')}
+                        // initial="hidden"
+                        // whileInView="show"
+                        // viewport={{ once: false, amount: 0.3 }}
+                        className="absolute top-36 -right-16"
+                    >
+                        <Image
+                            src="/png/2.png"
+                            alt="Bunga kiri"
+                            width={170}
+                            height={170}
+                            className="h-auto -rotate-20 lg:w-60"
+                            style={{ animationDelay: getRandomDelay() }}
+                        />
+                    </div>
 
-                <motion.div
-                    variants={createDelayVariants('right')}
-                    initial="hidden"
-                    whileInView="show"
-                    viewport={{ once: false, amount: 0.3 }}
-                    className="absolute -right-16"
-                >
-                    <Image
-                        src="/svg/2.svg"
-                        alt="Bunga Kanan"
-                        width={200}
-                        height={200}
-                        className="animate-sway h-auto w-48 lg:w-60"
-                        style={{ animationDelay: getRandomDelay() }}
-                    />
-                </motion.div>
+                    <div
+                        // variants={createDelayVariants('right')}
+                        // initial="hidden"
+                        // whileInView="show"
+                        // viewport={{ once: false, amount: 0.3 }}
+                        className="absolute top-36 -left-16"
+                    >
+                        <Image
+                            src="/png/3.png"
+                            alt="Bunga kiri"
+                            width={170}
+                            height={170}
+                            className="h-auto rotate-20 lg:w-60"
+                            style={{ animationDelay: getRandomDelay() }}
+                        />
+                    </div>
+                
                 
                 <motion.div
                     variants={fadeIn}
@@ -131,21 +149,21 @@ export const Hero = () => {
                     <Image
                         src="/image/logo.png"
                         alt="Logo"
-                        width={500}
-                        height={500}
+                        width={600}
+                        height={600}
                         className="z-20 -mt-14 w-9/12"
                     />
                 </motion.div>
-            </motion.div>
+            </div>
 
             {/* Foto Couple & Nama */}
-            <motion.div className="relative z-30 mx-auto -mt-24 mb-8 flex aspect-[3/4] w-[90%] max-w-[480px] flex-col items-center justify-end overflow-hidden">
+            <div className="relative z-30 mx-auto -mt-16 mb-8 flex aspect-[3/4] w-full max-w-[480px] flex-col items-center justify-end overflow-hidden">
                 <motion.div
                     variants={createDelayVariants('bottom')}
                     initial="hidden"
                     whileInView="show"
                     viewport={{ once: false, amount: 0.3 }}
-                    className="relative z-30 mx-auto -mt-24 mb-8 flex aspect-[3/4] w-[90%] max-w-[480px] flex-col items-center justify-end overflow-hidden"
+                    className="relative z-30 mx-auto -mt-32 mb-8 flex aspect-[3/4] w-full max-w-[480px] flex-col items-center justify-end overflow-hidden"
                 >
                     <Image
                         src="/image/couple-foto.png"
@@ -206,7 +224,7 @@ export const Hero = () => {
                         </Button>
                     </motion.div>
                 </motion.div>
-            </motion.div>
+            </div>
         </section>
     );
 };

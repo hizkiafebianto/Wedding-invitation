@@ -125,9 +125,9 @@
     }
 }
 
-::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera */
-}
+/* ::-webkit-scrollbar {
+    display: none; 
+} */
 
 
 

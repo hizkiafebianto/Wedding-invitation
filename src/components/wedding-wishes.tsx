@@ -58,7 +58,7 @@ export const WeddingWishes = () => {
         }
 
         const newWish = {
-            wedding_id: 1,
+            wedding_id: 2,
             name,
             address,
             comment: message,

@@ -12,7 +12,7 @@ export const BrideSection = () => {
             <div className="relative z-0 flex flex-col">
                 {/* Foto bride dalam frame lingkaran */}
                 <div className="flex justify-start">
-                    <div className="relative z-10 h-96 w-96 overflow-hidden rounded-full lg:-top-16 lg:h-[28rem] lg:w-[28rem]">
+                    <div className="relative z-10 ml-4 h-[22rem] w-[22rem] overflow-hidden rounded-full lg:-top-16 lg:h-[28rem] lg:w-[28rem]">
                         <motion.div
                             initial={{ scale: 1.2, opacity: 0 }}
                             whileInView={{ scale: 1, opacity: 1 }}
@@ -30,24 +30,128 @@ export const BrideSection = () => {
                     </div>
                 </div>
 
-                <div className="pointer-events-none absolute top-[230px] -left-28 z-20">
+                <div className="pointer-events-none absolute top-14 -left-8 z-30">
                     <Image
-                        src="/bunga/groom_flower0.png"
+                        src="/png2/4.png"
                         alt="Bunga Kiri"
-                        width={350}
-                        height={350}
+                        width={220}
+                        height={220}
                     />
                 </div>
-                <div className="pointer-events-none absolute top-[230px] right-0 z-20 overflow-hidden lg:left-44">
+
+                <div className="pointer-events-none absolute top-[280px] left-24 z-20">
                     <Image
-                        src="/bunga/groom_flower00.png"
-                        alt="Bunga kanan"
-                        width={350}
-                        height={350}
+                        src="/png2/12.png"
+                        alt="Bunga Kiri"
+                        width={230}
+                        height={230}
+                        className="-rotate-15"
                     />
                 </div>
-                <div className="pointer-events-none absolute -top-28 -left-40 z-0 overflow-hidden opacity-50 lg:-left-44">
-                    <Image src="/bunga/tree-groom.png" alt="Tree Groom" width={400} height={400} />
+
+                <div className="pointer-events-none absolute -left-2 -top-6 z-0">
+                    <Image
+                        src="/png2/10.png"
+                        alt="Bunga Kiri"
+                        width={140}
+                        height={140}
+                        className="rotate-45"
+                    />
+                </div>
+
+                <div className="pointer-events-none absolute left-24 -top-8 -z-10">
+                    <Image
+                        src="/png2/10.png"
+                        alt="Bunga Kiri"
+                        width={140}
+                        height={140}
+                        className="rotate-45"
+                    />
+                </div>
+
+                <div className="pointer-events-none absolute left-0 -top-20 -z-10">
+                    <Image
+                        src="/png2/11.png"
+                        alt="Bunga Kiri"
+                        width={80}
+                        height={80}
+                        className="-rotate-12"
+                    />
+                </div>
+
+                <div className="pointer-events-none absolute left-12 -top-20 -z-20">
+                    <Image
+                        src="/png2/11.png"
+                        alt="Bunga Kiri"
+                        width={80}
+                        height={80}
+                        className="-rotate-12"
+                    />
+                </div>
+
+                <div className="pointer-events-none absolute left-24 top-56 z-10">
+                    <Image
+                        src="/png2/6.png"
+                        alt="Bunga Kiri"
+                        width={50}
+                        height={50}
+                    />
+                </div>
+
+                <div className="pointer-events-none absolute right-52 top-64 z-10">
+                    <Image
+                        src="/png2/6.png"
+                        alt="Bunga Kiri"
+                        width={50}
+                        height={50}
+                    />
+                </div>
+
+                <div className="pointer-events-none absolute left-32 top-56 z-10">
+                    <Image
+                        src="/png2/5.png"
+                        alt="Bunga Kiri"
+                        width={100}
+                        height={100}
+                    />
+                </div>
+
+                <div className="pointer-events-none absolute -right-6 top-40 z-20">
+                    <Image
+                        src="/png2/8.png"
+                        alt="Bunga Kiri"
+                        width={130}
+                        height={130}
+                    />
+                </div>
+
+                <div className="pointer-events-none absolute -right-8 top-20 z-20">
+                    <Image
+                        src="/png2/7.png"
+                        alt="Bunga Kiri"
+                        width={200}
+                        height={200}
+                        
+                    />
+                </div>
+
+                <div className="pointer-events-none absolute -right-12 -top-2 z-20">
+                    <Image
+                        src="/png2/9.png"
+                        alt="Bunga Kiri"
+                        width={110}
+                        height={110}
+                        className="-rotate-35"
+                    />
+                </div>
+
+                <div className="pointer-events-none absolute -right-8 -top-28 z-10">
+                    <Image
+                        src="/png2/9.png"
+                        alt="Bunga Kiri"
+                        width={120}
+                        height={120}
+                    />
                 </div>
 
                 <motion.div
@@ -76,7 +180,7 @@ export const BrideSection = () => {
                             href="https://www.instagram.com/yushelliatania/"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex items-center gap-2 rounded-full bg-lime-900 px-4 py-1 text-xs text-white lg:text-base"
+                            className="flex items-center gap-2 rounded-full bg-lime-900 px-4 py-2 text-base text-white lg:text-base"
                         >
                             <FaInstagram />
                             @yushelliatania
