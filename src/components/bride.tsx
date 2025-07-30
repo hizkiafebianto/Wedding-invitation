@@ -4,9 +4,117 @@ import Image from 'next/image';
 import { greatVibes } from '@/app/font';
 import { FaInstagram } from 'react-icons/fa';
 import { motion } from 'framer-motion';
-import { container, item } from '@/utils/animations';
+import { container, createDelayVariants, item } from '@/utils/animations';
+
+const flowers = [
+    {
+        src: "/png2/4.png",
+        alt: "Flower 5",
+        width: 220,
+        height: 220,
+        delay: "0s",
+        className: "pointer-events-none absolute top-14 -left-8 z-30",
+    },
+    {
+        src: "/png2/12.png",
+        alt: "Flower 12",
+        width: 230,
+        height: 230,
+        delay: "0.4s",
+        className: "pointer-events-none absolute top-[280px] left-24 z-20 -rotate-15 lg:rotate-0 lg:top-[300px]",
+    },
+    {
+        src: "/png2/10.png",
+        alt: "Flower 6",
+        width: 140,
+        height: 140,
+        delay: "0.8s",
+        className: "pointer-events-none absolute -left-2 -top-6 z-0 rotate-45 lg:-left-8 lg:-top-10",
+    },
+    {
+        src: "/png2/10.png",
+        alt: "Flower 6",
+        width: 140,
+        height: 140,
+        delay: "1.2s",
+        className: "pointer-events-none absolute left-24 -top-8 -z-10 rotate-45 lg:-top-20 lg:left-8",
+    },
+    {
+        src: "/png2/11.png",
+        alt: "Flower 10",
+        width: 80,
+        height: 80,
+        delay: "0s",
+        className: "pointer-events-none absolute left-0 -top-20 -z-10 -rotate-12 lg:-top-28 lg:-left-4 lg:-z-30",
+    },
+    {
+        src: "/png2/11.png",
+        alt: "Flower 10",
+        width: 80,
+        height: 80,
+        delay: "0.4s",
+        className: "pointer-events-none absolute left-12 -top-20 -z-20 -rotate-12 lg:-top-28 lg:left-8",
+    },
+    {
+        src: "/png2/6.png",
+        alt: "Flower 11",
+        width: 50,
+        height: 50,
+        delay: "0.8s",
+        className: "pointer-events-none animate-sway absolute left-24 top-56 z-10",
+    },
+    {
+        src: "/png2/6.png",
+        alt: "Flower 11",
+        width: 50,
+        height: 50,
+        delay: "1.2s",
+        className: "pointer-events-none absolute animate-sway right-52 top-64 z-10 lg:left-56",
+    },
+    {
+        src: "/png2/5.png",
+        alt: "Flower 7",
+        width: 100,
+        height: 100,
+        delay: "0s",
+        className: "pointer-events-none animate-sway absolute left-32 top-56 z-10",
+    },
+    {
+        src: "/png2/8.png",
+        alt: "Flower 8",
+        width: 130,
+        height: 130,
+        delay: "0.4s",
+        className: "pointer-events-none absolute animate-sway -right-6 top-52 z-20",
+    },
+    {
+        src: "/png2/7.png",
+        alt: "Flower 9",
+        width: 200,
+        height: 200,
+        delay: "0.8s",
+        className: "pointer-events-none absolute animate-sway -right-8 top-20 z-20",
+    },
+    {
+        src: "/png2/9.png",
+        alt: "Flower 9",
+        width: 110,
+        height: 110,
+        delay: "1.2s",
+        className: "pointer-events-none absolute animate-sway -right-12 -top-24 z-20 -rotate-35",
+    },
+    {
+        src: "/png2/9.png",
+        alt: "Flower 4",
+        width: 120,
+        height: 120,
+        delay: "0s",
+        className: "pointer-events-none absolute animate-sway -right-8 -top-28 z-10",
+    },
+];
 
 export const BrideSection = () => {
+
     return (
         <section id="bride" className="relative w-full overflow-x-hidden pt-56 pb-24">
             <div className="relative z-0 flex flex-col">
@@ -30,129 +138,24 @@ export const BrideSection = () => {
                     </div>
                 </div>
 
-                <div className="pointer-events-none absolute top-14 -left-8 z-30">
-                    <Image
-                        src="/png2/4.png"
-                        alt="Bunga Kiri"
-                        width={220}
-                        height={220}
-                    />
-                </div>
-
-                <div className="pointer-events-none absolute top-[280px] left-24 z-20">
-                    <Image
-                        src="/png2/12.png"
-                        alt="Bunga Kiri"
-                        width={230}
-                        height={230}
-                        className="-rotate-15"
-                    />
-                </div>
-
-                <div className="pointer-events-none absolute -left-2 -top-6 z-0">
-                    <Image
-                        src="/png2/10.png"
-                        alt="Bunga Kiri"
-                        width={140}
-                        height={140}
-                        className="rotate-45"
-                    />
-                </div>
-
-                <div className="pointer-events-none absolute left-24 -top-8 -z-10">
-                    <Image
-                        src="/png2/10.png"
-                        alt="Bunga Kiri"
-                        width={140}
-                        height={140}
-                        className="rotate-45"
-                    />
-                </div>
-
-                <div className="pointer-events-none absolute left-0 -top-20 -z-10">
-                    <Image
-                        src="/png2/11.png"
-                        alt="Bunga Kiri"
-                        width={80}
-                        height={80}
-                        className="-rotate-12"
-                    />
-                </div>
-
-                <div className="pointer-events-none absolute left-12 -top-20 -z-20">
-                    <Image
-                        src="/png2/11.png"
-                        alt="Bunga Kiri"
-                        width={80}
-                        height={80}
-                        className="-rotate-12"
-                    />
-                </div>
-
-                <div className="pointer-events-none absolute left-24 top-56 z-10">
-                    <Image
-                        src="/png2/6.png"
-                        alt="Bunga Kiri"
-                        width={50}
-                        height={50}
-                    />
-                </div>
-
-                <div className="pointer-events-none absolute right-52 top-64 z-10">
-                    <Image
-                        src="/png2/6.png"
-                        alt="Bunga Kiri"
-                        width={50}
-                        height={50}
-                    />
-                </div>
-
-                <div className="pointer-events-none absolute left-32 top-56 z-10">
-                    <Image
-                        src="/png2/5.png"
-                        alt="Bunga Kiri"
-                        width={100}
-                        height={100}
-                    />
-                </div>
-
-                <div className="pointer-events-none absolute -right-6 top-40 z-20">
-                    <Image
-                        src="/png2/8.png"
-                        alt="Bunga Kiri"
-                        width={130}
-                        height={130}
-                    />
-                </div>
-
-                <div className="pointer-events-none absolute -right-8 top-20 z-20">
-                    <Image
-                        src="/png2/7.png"
-                        alt="Bunga Kiri"
-                        width={200}
-                        height={200}
-                        
-                    />
-                </div>
-
-                <div className="pointer-events-none absolute -right-12 -top-2 z-20">
-                    <Image
-                        src="/png2/9.png"
-                        alt="Bunga Kiri"
-                        width={110}
-                        height={110}
-                        className="-rotate-35"
-                    />
-                </div>
-
-                <div className="pointer-events-none absolute -right-8 -top-28 z-10">
-                    <Image
-                        src="/png2/9.png"
-                        alt="Bunga Kiri"
-                        width={120}
-                        height={120}
-                    />
-                </div>
+                {flowers.map((flower, idx) => (
+                    <motion.div 
+                        key={idx} 
+                        variants={createDelayVariants('right')}
+                        initial="hidden"
+                        whileInView="show"
+                        viewport={{ once: false, amount: 0.3 }}
+                        className={flower.className}
+                        style={{ animationDelay: flower.delay }}
+                    >
+                        <Image
+                            src={flower.src}
+                            alt={`Flower ${idx}`}
+                            width={flower.width}
+                            height={flower.height}
+                        />
+                    </motion.div>
+                ))}
 
                 <motion.div
                     variants={container}

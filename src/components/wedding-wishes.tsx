@@ -6,6 +6,8 @@ import { Input } from './ui/input';
 import { Textarea } from './ui/textarea';
 import { Button } from './ui/button';
 import { formatDistanceToNow } from 'date-fns';
+import { motion } from 'framer-motion';
+import { createDelayVariants } from '@/utils/animations';
 
 const MAX_CHAR = 300;
 const INITIAL_VISIBLE = 5;
@@ -31,7 +33,7 @@ export const WeddingWishes = () => {
             try {
                 setLoading(true);
 
-                const res = await fetch('https://undangundang.id/api/wishes');
+                const res = await fetch('https://uu.seketik.com/api/wishes');
                 if (!res.ok) throw new Error('Failed to etch wishes!');
 
                 const data = await res.json();
@@ -58,13 +60,13 @@ export const WeddingWishes = () => {
         }
 
         const newWish = {
-            wedding_id: 2,
+            wedding_id: 1,
             name,
             address,
             comment: message,
         };
         try {
-            const res = await fetch('https://undangundang.id/api/wishes', {
+            const res = await fetch('https://uu.seketik.com/api/wishes', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -103,20 +105,34 @@ export const WeddingWishes = () => {
 
             {/* Main content */}
             <div className="relative z-10 mx-auto max-w-xl">
-                <h2 className={`${greatVibes.className} mb-6 text-5xl text-white`}>
+                <motion.h2
+                    variants={createDelayVariants("bottom")}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: false, amount: 0.3 }} 
+                    className={`${greatVibes.className} mb-6 text-5xl text-white`}
+                >
                     Wedding Wishes
-                </h2>
+                </motion.h2>
 
-                <div className="mb-8 space-y-4">
+                <motion.div
+                    variants={createDelayVariants("bottom")}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: false, amount: 0.3 }} 
+                    className="mb-8 space-y-4"
+                >
                     <Input
                         placeholder="Name"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
+                        className="placeholder:text-white"
                     />
                     <Input
                         placeholder="Address"
                         value={address}
                         onChange={(e) => setAddress(e.target.value)}
+                        className="placeholder:text-white"
                     />
                     <Textarea
                         placeholder="Write your wishes"
@@ -133,7 +149,7 @@ export const WeddingWishes = () => {
                     <Button className="w-full" onClick={handleSubmit}>
                         Send
                     </Button>
-                </div>
+                </motion.div>
 
                 {/* Wishes list */}
                 {loading ? (
@@ -141,30 +157,41 @@ export const WeddingWishes = () => {
                 ) : (
                     <div className="space-y-4">
                         {wishes.slice(0, visibleCount).map((wish, i) => (
-                            <div
+                            <motion.div
+                                variants={createDelayVariants("left")}
+                                initial="hidden"
+                                whileInView="show"
+                                viewport={{ once: false, amount: 0.3 }}
                                 key={i}
                                 className="rounded-xl bg-white/90 p-4 text-left shadow backdrop-blur-md"
                             >
-                                <p className="font-bold text-lime-900">{wish.name}</p>
+                                <p className="font-bold text-lime-900 ">{wish.name}</p>
                                 <p className="text-sm text-lime-900">{wish.comment}</p>
                                 <p className="mt-1 text-xs text-lime-900">
                                     {formatDistanceToNow(new Date(wish.created_at), {
                                         addSuffix: true,
                                     })}
                                 </p>
-                            </div>
+                            </motion.div>
                         ))}
                     </div>
                 )}
 
                 {visibleCount < wishes.length && (
-                    <Button
-                        variant="outline"
-                        className="mt-4 wrap-break-word text-lime-900"
-                        onClick={handleLoadMore}
+                    <motion.div
+                        variants={createDelayVariants("bottom")}
+                        initial="hidden"
+                        whileInView="show"
+                        viewport={{ once: false, amount: 0.3 }}
                     >
-                        Load More
-                    </Button>
+                        <Button
+                            variant="outline"
+                            className="mt-4 wrap-break-word text-lime-900"
+                            onClick={handleLoadMore}
+                        >
+                            Load More
+                        </Button>
+                    </motion.div>
                 )}
             </div>
         </section>

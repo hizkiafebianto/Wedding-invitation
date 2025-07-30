@@ -11,13 +11,12 @@ import { OurStory } from '@/components/story';
 import { TwoColumnLayout } from '@/components/two-column-layout';
 import { BrideSection } from '@/components/bride';
 import { WeddingVideo } from '@/components/wedding-video';
-import { EventHoly } from '@/components/event-holy';
-import { EventWedding } from '@/components/event-wedding';
 import { EventDresscode } from '@/components/dresscode-holy';
 import { RSVPSection } from '@/components/rsvp-section';
 import { WeddingWishes } from '@/components/wedding-wishes';
 import { WeddingStreaming } from '@/components/wedding-streaming';
 import { ThankSection } from '@/components/thank-section';
+import { EventSection } from '@/components/event-section';
 
 export default function InvitationPage() {
     return (
@@ -34,8 +33,9 @@ export default function InvitationPage() {
                 <OurStory />
                 <Gallery />
                 <WeddingVideo />
-                <EventHoly />
-                <EventWedding />
+                <EventSection />
+                {/* <EventHoly />
+                <EventWedding /> */}
                 <EventDresscode />
                 <RSVPSection />
                 <WeddingStreaming />

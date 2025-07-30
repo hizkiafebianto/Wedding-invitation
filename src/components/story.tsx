@@ -4,6 +4,8 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { greatVibes } from '@/app/font';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { createDelayVariants, item } from '@/utils/animations';
 
 const stories = [
     {
@@ -35,9 +37,17 @@ export const OurStory = () => {
 
     return (
         <section id="our-story" className="relative z-10 w-full overflow-hidden px-12 py-20 text-center">
-            <h2 className={`text-5xl ${greatVibes.className} mb-12 text-lime-900`}>Our Story</h2>
+            <motion.h2 
+                variants={createDelayVariants('bottom')}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: false, amount: 0.3 }}
+                className={`text-5xl ${greatVibes.className} text-5xl md:text-6xl mb-12 text-white`}
+            >
+                Our Story
+            </motion.h2>
 
-            {/* <div className="absolute inset-0 -z-10">
+            <div className="absolute inset-0 -z-10">
                 <Image
                     src="/ourstory/bg.jpg"
                     alt="Holy Matrimony Background"
@@ -45,16 +55,28 @@ export const OurStory = () => {
                     objectFit="cover"
                     priority
                 />
-            </div> */}
+            </div>
 
             {/* Blur Overlay */}
-            {/* <div className="absolute inset-0 -z-10 bg-black/40 backdrop-blur-sm" /> */}
+            <div className="absolute inset-0 -z-10 bg-black/40 backdrop-blur-sm" />
 
-            <div className="relative mx-auto flex min-h-[500px] max-w-xl flex-col justify-start rounded-lg bg-white p-6 shadow-lg md:min-h-[600px]">
+            <motion.div 
+                variants={createDelayVariants('bottom')}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: false, amount: 0.3 }}
+                className="relative mx-auto flex min-h-[500px] max-w-xl flex-col justify-start rounded-lg bg-white p-6 shadow-lg md:min-h-[600px]"
+            >
                 {/* Gambar */}
-                <div className="relative mb-4 h-56 w-full overflow-hidden rounded-lg md:h-72 lg:h-96">
+                <motion.div
+                    variants={item}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: false, amount: 0.3 }} 
+                    className="relative mb-4 h-56 w-full overflow-hidden rounded-lg md:h-72 lg:h-96"
+                >
                     <Image src={story.image} alt={story.title} fill className="object-cover" />
-                </div>
+                </motion.div>
 
                 {/* Judul */}
                 <h3 className="mb-2 text-xl font-semibold text-lime-700">{story.title}</h3>
@@ -88,7 +110,7 @@ export const OurStory = () => {
                         />
                     ))}
                 </div>
-            </div>
+            </motion.div>
         </section>
     );
 };

@@ -3,6 +3,8 @@
 import { greatVibes } from '@/app/font';
 import { Pause, Play } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
+import { motion } from 'framer-motion';
+import { createDelayVariants } from '@/utils/animations';
 // import Image from 'next/image';
 
 export const WeddingVideo = () => {
@@ -71,9 +73,15 @@ export const WeddingVideo = () => {
 
     return (
         <section id="wedding-video" className="relative px-4 text-center">
-            <h2 className={`text-5xl ${greatVibes.className} mb-8 font-semibold text-lime-900`}>
+            <motion.h2
+                variants={createDelayVariants('bottom')}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: false, amount: 0.3 }} 
+                className={`text-5xl ${greatVibes.className} mb-8 text-5xl md:text-6xl font-semibold text-lime-900`}
+            >
                 Our Footage
-            </h2>
+            </motion.h2>
 
             {/* Flower background absolute positioned */}
             {/* <div className="pointer-events-none absolute inset-0 -bottom-56 -z-10 flex items-center justify-center">
@@ -100,7 +108,13 @@ export const WeddingVideo = () => {
             </div> */}
 
             {/* video local storage */}
-            <div className="relative mx-auto flex max-w-4xl items-center justify-center">
+            <motion.div
+                variants={createDelayVariants('bottom')}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: false, amount: 0.3 }} 
+                className="relative mx-auto flex max-w-4xl items-center justify-center"
+            >
                 <div 
                     className="relative w-full max-w-3xl overflow-hidden shadow-lg rounded-xl"
                     onMouseEnter={handleMouseEnter}
@@ -131,9 +145,17 @@ export const WeddingVideo = () => {
                         </button>
                     )}
                 </div>
-            </div>
+            </motion.div>
 
-            <h3 className="mt-6 mb-10 text-lime-900 italic">The Pre-Wedding</h3>
+            <motion.h3
+                variants={createDelayVariants('bottom')}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: false, amount: 0.3 }} 
+                className="mt-6 mb-10 text-lime-900 italic"
+            >
+                The Pre-Wedding
+            </motion.h3>
         </section>
     );
 };

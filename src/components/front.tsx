@@ -48,7 +48,7 @@ const Front = () => {
 
         const fetchGuest = async () => {
             try {
-                const res = await fetch(`https://undangundang.id/api/rsvp/${guestId}`);
+                const res = await fetch(`https://uu.seketik.com/api/rsvp/${guestId}`);
                 if (!res.ok) {
                     throw new Error('Gagal');
                 }

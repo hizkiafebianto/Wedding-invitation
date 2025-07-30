@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { greatVibes } from '@/app/font';
+import { motion } from 'framer-motion';
+import { createDelayVariants } from '@/utils/animations';
 
 const images = [
     '/gallery/galeri1.jpg',
@@ -17,15 +19,25 @@ export const Gallery = () => {
     const [selected, setSelected] = useState<string>(images[0]); // default image
 
     return (
-        <section id="gallery" className="mt-16 px-4 py-16">
-            <h2
-                className={`text-5xl ${greatVibes.className} mb-8 text-center font-semibold text-lime-900`}
+        <section id="gallery" className="mt-16 px-4 py-20">
+            <motion.h2
+                variants={createDelayVariants('bottom')}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: false, amount: 0.3 }}
+                className={`text-5xl ${greatVibes.className} mb-8 text-5xl md:text-6xl text-center font-semibold text-lime-900`}
             >
                 Potrait Of Us
-            </h2>
+            </motion.h2>
 
             {/* Gambar utama */}
-            <div className="mb-6 flex justify-center">
+            <motion.div 
+                variants={createDelayVariants('bottom')}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: false, amount: 0.3 }}
+                className="mb-6 flex justify-center"
+            >
                 <div className="relative w-full max-w-4xl aspect-[3/4] overflow-hidden rounded-2xl shadow-lg">
                     <Image
                         src={selected}
@@ -34,10 +46,16 @@ export const Gallery = () => {
                         className="object-cover object-center"
                     />
                 </div>
-            </div>
+            </motion.div>
 
             {/* Thumbnail */}
-            <div className="flex gap-4 w-full overflow-x-auto px-2 scrollbar-hide">
+            <motion.div
+                variants={createDelayVariants('bottom')}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: false, amount: 0.3 }} 
+                className="flex gap-4 w-full overflow-x-auto px-2 scrollbar-hide"
+            >
                 {images.map((src, i) => (
                     <div
                         key={i}
@@ -56,7 +74,7 @@ export const Gallery = () => {
                         />
                     </div>
                 ))}
-            </div>
+            </motion.div>
         </section>
     );
 };

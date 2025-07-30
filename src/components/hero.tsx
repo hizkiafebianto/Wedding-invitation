@@ -22,121 +22,57 @@ export const Hero = () => {
             {/* Logo & bunga atas */}
             <div
                 className="relative z-10 flex w-full flex-col items-center overflow-hidden pt-40 pb-20"
-                // variants={container}
-                // initial="hidden"
-                // whileInView="show"
-                // viewport={{ once: false, amount: 0.3 }}
+                
             >
-                <div className="top-0 absolute left-0 w-full">
+                <motion.div 
+                    variants={createDelayVariants('bottom')}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: false, amount: 0.3 }}
+                    className="top-0 absolute left-0"
+                >
                     <Image 
                         src="/png/1.png"
                         alt="Bunga Atas"
                         width={500}
                         height={500}
+                        className="w-full"
                     />
-                </div>
-                {/* <motion.div
-                    variants={createDelayVariants('right')}
-                    initial="hidden"
-                    whileInView="show"
-                    viewport={{ once: false, amount: 0.3 }}
-                    className="absolute -top-3 -left-20"
-                >
-                    <Image
-                        src="/bunga/wisteria_flower _kiri.png"
-                        alt="Bunga Kiri"
-                        width={200}
-                        height={200}
-                        className="animate-sway h-auto w-48 lg:w-60"
-                        style={{ animationDelay: getRandomDelay() }}
-                    />
-                </motion.div> */}
-
-                {/* <motion.div
-                    variants={createDelayVariants('left')}
-                    // variants={fadeIn}
-                    initial="hidden"
-                    whileInView="show"
-                    viewport={{ once: false, amount: 0.3 }}
-                    className="absolute -top-3 -right-20"
-                >
-                    <Image
-                        src="/bunga/wisteria_flower.png"
-                        alt="Bunga Kanan"
-                        width={200}
-                        height={200}
-                        className="animate-sway z-10 h-auto w-48 lg:w-60"
-                        style={{ animationDelay: getRandomDelay() }}
-                    />
-                </motion.div> */}
-
-                {/* <motion.div
-                    variants={createDelayVariants('left')}
-                    initial="hidden"
-                    whileInView="show"
-                    viewport={{ once: false, amount: 0.3 }}
-                    className="absolute top-10 -right-14"
-                >
-                    <Image
-                        src="/bunga/wisteria_hero_kanan.png"
-                        alt="Bunga Kanan"
-                        width={300}
-                        height={300}
-                        className="animate-sway w-48 lg:w-60"
-                        style={{ animationDelay: getRandomDelay() }}
-                    />
-                </motion.div> */}
-
-                {/* <motion.div
-                    variants={createDelayVariants('right')}
-                    initial="hidden"
-                    whileInView="show"
-                    viewport={{ once: false, amount: 0.3 }}
-                    className="absolute top-10 -left-16"
-                >
-                    <Image
-                        src="/bunga/wisteria_hero_kiri.png"
-                        alt="Bunga Kiri"
-                        width={200}
-                        height={200}
-                        className="animate-sway h-auto w-48 lg:w-60"
-                        style={{ animationDelay: getRandomDelay() }}
-                    />
-                </motion.div> */}
+                </motion.div>
                 
-                    <div
-                        // variants={createDelayVariants('right')}
-                        // initial="hidden"
-                        // whileInView="show"
-                        // viewport={{ once: false, amount: 0.3 }}
-                        className="absolute top-36 -right-16"
+                    <motion.div
+                        variants={createDelayVariants('left')}
+                        initial="hidden"
+                        whileInView="show"
+                        viewport={{ once: false, amount: 0.3 }}
+                        className="absolute top-36 -right-24"
                     >
                         <Image
                             src="/png/2.png"
                             alt="Bunga kiri"
                             width={170}
                             height={170}
-                            className="h-auto -rotate-20 lg:w-60"
+                            className="h-auto -rotate-20 lg:w-48 animate-sway"
                             style={{ animationDelay: getRandomDelay() }}
                         />
-                    </div>
+                    </motion.div>
 
-                    <div
-                        // variants={createDelayVariants('right')}
-                        // initial="hidden"
-                        // whileInView="show"
-                        // viewport={{ once: false, amount: 0.3 }}
-                        className="absolute top-36 -left-16"
+                    <motion.div
+                        variants={createDelayVariants('right')}
+                        initial="hidden"
+                        whileInView="show"
+                        viewport={{ once: false, amount: 0.3 }}
+                        className="absolute top-36 -left-24"
                     >
                         <Image
                             src="/png/3.png"
                             alt="Bunga kiri"
                             width={170}
                             height={170}
-                            className="h-auto rotate-20 lg:w-60"
+                            className="h-auto rotate-20 lg:w-48 animate-sway"
                             style={{ animationDelay: getRandomDelay() }}
                         />
-                    </div>
+                    </motion.div>
                 
                 
                 <motion.div
