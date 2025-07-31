@@ -33,7 +33,7 @@ export const WeddingWishes = () => {
             try {
                 setLoading(true);
 
-                const res = await fetch('https://uu.seketik.com/api/wishes');
+                const res = await fetch('/api/wishes');
                 if (!res.ok) throw new Error('Failed to etch wishes!');
 
                 const data = await res.json();
@@ -66,7 +66,7 @@ export const WeddingWishes = () => {
             comment: message,
         };
         try {
-            const res = await fetch('https://uu.seketik.com/api/wishes', {
+            const res = await fetch('/api/wishes', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

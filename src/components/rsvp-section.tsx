@@ -59,39 +59,39 @@ export const RSVPSection = () => {
         if (!guestId) return;
 
         const fetchRSVP = async () => {
-        try {
-            setLoading(true);
-            const res = await fetch(`https://uu.seketik.com/api/rsvp/${guestId}`);
+            try {
+                setLoading(true);
+                const res = await fetch(`/api/rsvp/${guestId}`);
 
-            if (!res.ok) throw new Error('Gagal mengambil data RSVP');
-            const data = await res.json();
+                if (!res.ok) throw new Error('Gagal mengambil data RSVP');
+                const data = await res.json();
 
-            if (!data || !data.id) return;
-            setExistingRSVP(data);
-            setSubmitted(!!data.status);
+                if (!data || !data.id) return;
+                setExistingRSVP(data);
+                setSubmitted(!!data.status);
 
-            if (data.name && !name) setName(data.name);
-            if (data.phone && !phone) setPhone(data.phone);
-            if (data.address && !address) setAddress(data.address);
+                if (data.name && !name) setName(data.name);
+                if (data.phone && !phone) setPhone(data.phone);
+                if (data.address && !address) setAddress(data.address);
 
-            if(data.phone && !phone) setPhone(data.phone);
+                if(data.phone && !phone) setPhone(data.phone);
 
-            if (data.status) {
-                setAttending(data.status === 'Saya akan datang' ? 'yes' : 'no');
+                if (data.status) {
+                    setAttending(data.status === 'Saya akan datang' ? 'yes' : 'no');
+                }
+
+                if (data.amount) {
+                    setGuestCount(data.amount);
+                }
+
+                if (data.events) {
+                    setSelectedEvents(data.events);
+                }
+            } catch (err) {
+                console.error('Fetch error:', err);
+            } finally {
+                setLoading(false);
             }
-
-            if (data.amount) {
-                setGuestCount(data.amount);
-            }
-
-            if (data.events) {
-                setSelectedEvents(data.events);
-            }
-        } catch (err) {
-            console.error('Fetch error:', err);
-        } finally {
-            setLoading(false);
-        }
         };
 
         fetchRSVP();
@@ -108,52 +108,52 @@ export const RSVPSection = () => {
     };
 
     const handleSubmit = async () => {
-    if (!attending) {
-        alert("Please select your attendance status.");
-        return;
-    }
-
-    if (!name.trim() || !phone.trim() || !address.trim()) {
-        alert("Name, phone number, and address are required.");
-        return;
-    }
-
-    const payload = {
-        wedding_id: weddingId,
-        name: name.trim(),
-        phone: phone.trim(),
-        address: address.trim(),
-        amount: 1, //ada perubahan guest_num
-        status: attending === 'yes' ? 'Saya akan datang' : 'Saya tidak bisa datang',
-    };
-    console.log('🟡 RSVP payload:', JSON.stringify(payload, null, 2));
-
-    try {
-        setLoading(true);
-
-        const res = await fetch('https://uu.seketik.com/api/rsvp', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-        },
-        body: JSON.stringify(payload),
-        });
-
-        if (!res.ok) {
-            const errorText = await res.text();
-            throw new Error(`Failed to submit RSVP: ${res.status} - ${errorText}`);
+        if (!attending) {
+            alert("Please select your attendance status.");
+            return;
         }
 
-        const saved = await res.json();
-        console.log('RSVP Saved:', saved);
-        setSubmitted(true);
-    } catch (err) {
-        console.error('RSVP submit error:', err);
-        alert(`Failed to save RSVP: ${err}`);
-    } finally {
-        setLoading(false);
-    }
+        if (!name.trim() || !phone.trim() || !address.trim()) {
+            alert("Name, phone number, and address are required.");
+            return;
+        }
+
+        const payload = {
+            wedding_id: weddingId,
+            name: name.trim(),
+            phone: phone.trim(),
+            address: address.trim(),
+            amount: guestCount, //ada perubahan guest_num
+            status: attending === 'yes' ? 'Saya akan datang' : 'Saya tidak bisa datang',
+        };
+        console.log('🟡 RSVP payload:', JSON.stringify(payload, null, 2));
+
+        try {
+            setLoading(true);
+
+            const res = await fetch('/api/rsvp', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+            },
+            body: JSON.stringify(payload),
+            });
+
+            if (!res.ok) {
+                const errorText = await res.text();
+                throw new Error(`Failed to submit RSVP: ${res.status} - ${errorText}`);
+            }
+
+            const saved = await res.json();
+            console.log('RSVP Saved:', saved);
+            setSubmitted(true);
+        } catch (err) {
+            console.error('RSVP submit error:', err);
+            alert(`Failed to save RSVP: ${err}`);
+        } finally {
+            setLoading(false);
+        }
     };
 
 
