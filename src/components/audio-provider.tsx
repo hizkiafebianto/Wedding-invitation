@@ -11,7 +11,7 @@ export const AudioProvider = () => {
         const should = window.localStorage.getItem('shouldPlayAudio');
         if (should === 'true') {
             setShouldPlay(true);
-            window.localStorage.removeItem('shouldPlayAudio');
+            // window.localStorage.removeItem('shouldPlayAudio');
         }
     }, []);
 
@@ -37,6 +37,10 @@ export const AudioProvider = () => {
             document.removeEventListener("visibilitychange", handleVisibilityChange)
         }
     }, [shouldPlay])
+
+    useEffect(() => {
+        window.localStorage.setItem('shouldPlayAudio', shouldPlay.toString());
+    }, [shouldPlay]);
 
     return (
         <>
