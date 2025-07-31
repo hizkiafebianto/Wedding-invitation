@@ -83,7 +83,7 @@ export const Hero = () => {
                     className="flex justify-center"
                 >
                     <Image
-                        src="/image/logo.png"
+                        src="/png/logo1.png"
                         alt="Logo"
                         width={600}
                         height={600}
