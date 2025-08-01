@@ -1,3 +1,5 @@
+"use client";
+
 // components/TwoColumnLayout.tsx
 import { ReactNode } from 'react';
 import Image from 'next/image';
@@ -53,6 +55,7 @@ export const TwoColumnLayout = ({ children }: Props) => {
                             >
                                 Yushellia
                             </h1>
+                            <p className="mt-4">#YUSHELbeHIZ</p>
                         </div>
                     </div>
 

@@ -1,9 +1,10 @@
+import { Suspense } from 'react';
 import Front from '@/components/front';
 
 export default function Home() {
     return (
-        <div>
+        <Suspense fallback={<div>Loading...</div>}>
             <Front />
-        </div>
+        </Suspense>
     );
 }

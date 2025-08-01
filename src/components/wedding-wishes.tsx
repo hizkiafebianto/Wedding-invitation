@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { greatVibes } from '@/app/font';
 import { useEffect, useState } from 'react';

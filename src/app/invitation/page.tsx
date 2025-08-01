@@ -1,5 +1,7 @@
 'use client';
 
+import { Suspense } from 'react';
+
 import { AudioProvider } from '@/components/audio-provider';
 import { GroomSection } from '@/components/groom';
 import { Countdown } from '@/components/countdown';
@@ -21,7 +23,6 @@ import { EventSection } from '@/components/event-section';
 export default function InvitationPage() {
     return (
         <>
-            {/* Static audio provider (play once masuk invitation) */}
             <AudioProvider />
 
             <TwoColumnLayout>
@@ -34,10 +35,13 @@ export default function InvitationPage() {
                 <Gallery />
                 <WeddingVideo />
                 <EventSection />
-                {/* <EventHoly />
-                <EventWedding /> */}
                 <EventDresscode />
-                <RSVPSection />
+
+                {/* ⬇️ Bungkus RSVPSection dengan Suspense */}
+                <Suspense fallback={<div>Loading RSVP...</div>}>
+                    <RSVPSection />
+                </Suspense>
+
                 <WeddingStreaming />
                 <GiftSection />
                 <WeddingWishes />

@@ -1,3 +1,5 @@
+"use client";
+
 import { greatVibes } from '@/app/font';
 import { Button } from './ui/button';
 import { FaMapLocationDot } from 'react-icons/fa6';
