@@ -140,12 +140,14 @@ const Front = () => {
                 {/* Background utama */}
                 <div className="absolute inset-0 -z-10">
                     <Image
-                        src="/background/wisteria1.jpg"
+                        src="/png2/123.jpg"
                         alt="Main Background"
                         fill
                         className="object-cover object-center"
                     />
                 </div>
+
+                <div className="absolute inset-0 z-0 bg-white/30 backdrop-blur-sm" />
 
                 <motion.div
                     className="relative z-10 mx-auto w-full h-screen rounded-2xl px-6 py-10 shadow-xl"
