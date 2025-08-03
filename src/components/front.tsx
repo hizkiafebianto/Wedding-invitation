@@ -152,9 +152,9 @@ useEffect(() => {
 
     return (
         <>
-            <audio ref={audioRef} src="/audio/audio.mp3" loop preload="auto" />
+            <audio ref={audioRef} src="/audio/wedding_audio.mp3" loop preload="auto" />
 
-            <div className="relative flex min-h-screen items-center justify-center overflow-hidden text-center">
+            <div className="relative flex min-h-screen items-center justify-center overflow-hidden text-center px-2 sm:px-6">
                 {/* Background utama */}
                 <div className="absolute inset-0 -z-10">
                     <Image
@@ -221,7 +221,7 @@ useEffect(() => {
 
                 {/* Kartu utama */}
                 <motion.div
-                    className="absolute z-10 mt-40 w-full max-w-md rounded-2xl bg-white/90 px-6 py-10 pt-32 shadow-xl sm:max-w-lg sm:px-10"
+                    className="absolute z-10 top-1/2 left-1/2 w-[92%] max-w-md -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-white/90 px-4 py-8 pt-24 shadow-xl sm:max-w-lg sm:px-10 sm:py-12 sm:pt-32"
                     variants={staggerContainer}
                     initial="hidden"
                     animate="show"
@@ -229,7 +229,7 @@ useEffect(() => {
                     
                     <motion.div
                         variants={fadeUp}
-                        className="absolute -top-56 left-1/2 w-[50%] -translate-x-1/2"
+                        className="absolute top-6 left-1/2 w-32 sm:w-[50%] -translate-x-1/2 -translate-y-[60%]"
                     >
                         <Image
                             src="/frame_oval.png"
