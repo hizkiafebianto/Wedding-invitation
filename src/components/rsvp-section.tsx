@@ -66,27 +66,18 @@ export const RSVPSection = () => {
                 if (!res.ok) throw new Error('Gagal mengambil data RSVP');
                 const data = await res.json();
 
-                if (!data || !data.id) return;
+                if (!data) return;
+
                 setExistingRSVP(data);
-                setSubmitted(!!data.status);
+                setSubmitted(false);
 
-                if (data.name && !name) setName(data.name);
-                if (data.phone && !phone) setPhone(data.phone);
-                if (data.address && !address) setAddress(data.address);
+                setName(data.name ?? "");
+                setPhone(data.phone ?? "");
+                setAddress(data.address ?? "");
 
-                if(data.phone && !phone) setPhone(data.phone);
-
-                if (data.status) {
-                    setAttending(data.status === 'Saya akan datang' ? 'yes' : 'no');
-                }
-
-                if (data.amount) {
-                    setGuestCount(data.amount);
-                }
-
-                if (data.events) {
-                    setSelectedEvents(data.events);
-                }
+                if (data.status) setAttending(data.status === 'Saya akan datang' ? 'yes' : 'no');
+                if (data.amount) setGuestCount(data.amount);
+                if (data.events) setSelectedEvents(data.events);
             } catch (err) {
                 console.error('Fetch error:', err);
             } finally {
@@ -94,8 +85,10 @@ export const RSVPSection = () => {
             }
         };
 
-        fetchRSVP();
+    fetchRSVP();
     }, [guestId]);
+
+
 
     const toggleEvent = (event: string) => {
         setSelectedEvents((prev) =>

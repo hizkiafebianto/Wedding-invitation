@@ -7,6 +7,7 @@ import { greatVibes } from '@/app/font';
 import { useRef, useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { motion, Variants } from 'framer-motion';
+// import slugify from 'slugify';
 
 const fadeUp: Variants = {
     hidden: { opacity: 0, y: 30 },
@@ -85,50 +86,67 @@ const allFlowers = [
     
 ];
 
+const toSlug = (name: string) =>
+  name.toLowerCase().replace(/ /g, '-');
+
 const Front = () => {
     const audioRef = useRef<HTMLAudioElement>(null);
     const router = useRouter();
     const searchParams = useSearchParams();
 
-    const [guestId, setGuestId] = useState<string | null>(null);
+    // const [guestId, setGuestId] = useState<string | null>(null);
     const [guestName, setGuestName] = useState('Tamu Undangan');
+    // const [guestNameParam, setGuestNameParams] = useState<string | null>(null);
+    const [guestSlug, setGuestSlug] = useState<string | null>(null);
+
     // const [guestNumber, setGuestNumber] = useState("");
     // const [guestAddress, setGuestAddress] = useState("");
 
     useEffect(() => {
-        const id = searchParams.get('to');
-        if (id) {
-            setGuestId(id);
-        }
-    }, [searchParams]);
+    const slugParam = searchParams.get("to");
+    if (slugParam) {
+        setGuestSlug(slugParam);
+    }
+}, [searchParams]);
 
-    useEffect(() => {
-        if (!guestId) return;
+useEffect(() => {
+    if (!guestSlug) return;
 
-        const fetchGuest = async () => {
-            try {
-                const res = await fetch(`https://uu.seketik.com/api/rsvp/${guestId}`);
-                if (!res.ok) {
-                    throw new Error('Gagal');
-                }
+    const fetchGuest = async () => {
+        try {
+            const nameFromSlug = guestSlug.toLowerCase();
 
-                const data = await res.json();
-                setGuestName(data.name || 'Tamu Undangan');
-                // setGuestNumber(data.phone || "");
-            } catch (err) {
-                console.log('Gagal ambil data tamu', err);
+            const res = await fetch(`https://uu.seketik.com/api/rsvp`);
+            if (!res.ok) throw new Error("Gagal ambil data tamu");
+
+            const data: { name: string }[] = await res.json();
+
+            const guest = data.find(
+                (item) => toSlug(item.name) === nameFromSlug
+            );
+
+            if (guest) {
+                setGuestName(guest.name);
+            } else {
+                setGuestName(nameFromSlug); // fallback
             }
-        };
-        fetchGuest();
-    }, [guestId]);
+        } catch (err) {
+            console.log("Gagal ambil data tamu", err);
+        }
+    };
+
+    fetchGuest();
+}, [guestSlug]);
+
+
 
     const handleOpen = () => {
         if (typeof window !== 'undefined') {
             window.localStorage.setItem('shouldPlayAudio', 'true');
         }
 
-        const url = guestId ? `/invitation?to=${guestId}` : '/invitation';
-        router.push(url);
+         const safeSlug = guestSlug?.toLowerCase() ?? 'tamu-undangan';
+    router.push(`/invitation?to=${safeSlug}`);
     };
 
 
@@ -272,3 +290,4 @@ const Front = () => {
 };
 
 export default Front;
+

@@ -69,36 +69,38 @@ export const GiftSection = () => {
             </Select>
 
             {selectedBank && (
-                <div className="mt-6 text-center">
-                    <h3 className="text-lg font-semibold">{selectedBank.name}</h3>
-                    <p className="text-sm">Account Number:</p>
-                    <p className="font-semibold text-lime-900">{selectedBank.accountNumber}</p>
-                    <p className="text-sm">Account Name:</p>
-                    <p className="mb-3 font-semibold">{selectedBank.accountName}</p>
+                <div className="mt-6 flex justify-center">
+                    <div className="relative w-[360px] rounded-2xl bg-white shadow-md overflow-hidden">
+                        <div className="absolute inset-0">
+                            <Image
+                                src="/png2/card.png"
+                                alt="Debit Card Background"
+                                fill
+                                className="object-cover"
+                            />
+                        </div>
 
-                    {selectedBank.qrCode && (
-                    <div className="mb-4 flex justify-center">
-                        <Image
-                            src={selectedBank.qrCode}
-                            alt={`${selectedBank.name} QR Code`}
-                            width={130}
-                            height={130}
-                            className="rounded shadow"
-                        />
+                        <div className="relative z-10 flex flex-col gap-2 p-5 text-black">
+                            <div className="flex justify-between items-start">
+                                <p className="text-right text-lg font-semibold">{selectedBank.name}</p>
+                            </div>
+
+                            <p className="mt-3 text-base font-medium">{selectedBank.accountName}</p>
+                            <p className="text-sm tracking-wide">{selectedBank.accountNumber}</p>
+
+                            <div className="mt-4">
+                                <Button className="p-4" variant="default" onClick={() => handleCopy(selectedBank.rawAccountNumber)}>
+                                    <Copy className="mr-2 h-4 w-4" /> Salin
+                                </Button>
+                                {copied && (
+                                    <p className="mt-1 text-sm text-green-600">Tersalin!</p>
+                                )}
+                            </div>
+                        </div>
                     </div>
-                    )}
-
-                    <Button variant="secondary" onClick={() => handleCopy(selectedBank.rawAccountNumber)}>
-                        <Copy className="mr-2 h-4 w-4" /> Copy
-                    </Button>
-
-                    {copied && (
-                        <p className="mt-2 text-sm text-green-600 transition-opacity duration-300">
-                            Copied
-                        </p>
-                    )}
                 </div>
             )}
+
         </motion.div>
         </section>
     );
