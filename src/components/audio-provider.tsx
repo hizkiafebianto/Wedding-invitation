@@ -5,7 +5,13 @@ import { AudioPlayer } from '@/components/audio-player';
 
 export const AudioProvider = () => {
     const audioRef = useRef<HTMLAudioElement | null>(null);
-    const [shouldPlay, setShouldPlay] = useState(false);
+    const [shouldPlay, setShouldPlay] = useState<boolean>(() => {
+        if (typeof window !== "undefined") {
+            return window.localStorage.getItem("shouldPlayAudio") === "true";
+        }
+
+        return false;
+    });
 
     useEffect(() => {
         const should = window.localStorage.getItem('shouldPlayAudio');
@@ -44,8 +50,12 @@ export const AudioProvider = () => {
 
     return (
         <>
-            <audio ref={audioRef} src="/audio/audio_wedding.mp3" loop preload="auto" muted />
-            {shouldPlay && <AudioPlayer audioRef={audioRef} />}
+            <audio ref={audioRef} src="/audio/wedding_audio.mp3" loop preload="auto" muted />
+            <AudioPlayer
+                audioRef={audioRef}
+                playing={shouldPlay}
+                setShouldPlay={setShouldPlay}
+            />
         </>
     );
 };

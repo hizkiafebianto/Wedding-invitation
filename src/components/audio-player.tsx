@@ -6,9 +6,11 @@ import { useState } from 'react';
 
 type AudioPlayerProps = {
     audioRef: React.RefObject<HTMLAudioElement | null>;
+    setShouldPlay: (v: boolean) => void;
+    playing: boolean;
 };
 
-export const AudioPlayer = ({ audioRef }: AudioPlayerProps) => {
+export const AudioPlayer = ({ audioRef, setShouldPlay }: AudioPlayerProps) => {
     const [playing, setPlaying] = useState(true);
 
     const toggleAudio = () => {
@@ -16,8 +18,10 @@ export const AudioPlayer = ({ audioRef }: AudioPlayerProps) => {
 
         if (playing) {
             audioRef.current.pause();
+            setShouldPlay(false);
         } else {
             audioRef.current.play();
+            setShouldPlay(true);
         }
 
         setPlaying(!playing);
