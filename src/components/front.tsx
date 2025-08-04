@@ -154,7 +154,7 @@ useEffect(() => {
         <>
             <audio ref={audioRef} src="/audio/wedding_audio.mp3" loop preload="auto" />
 
-            <div className="relative flex min-h-screen items-center justify-center overflow-hidden text-center px-2 sm:px-6">
+            <div className="relative h-screen flex items-center justify-center overflow-hidden text-center px-2 sm:px-6">
                 {/* Background utama */}
                 <div className="absolute inset-0 -z-10">
                     <Image
@@ -168,7 +168,7 @@ useEffect(() => {
                 <div className="absolute inset-0 z-0 bg-white/30 backdrop-blur-sm" />
 
                 <motion.div
-                    className="relative z-10 mx-auto w-full h-screen rounded-2xl px-6 py-10 shadow-xl"
+                    className="relative z-10 w-full h-full rounded-2xl px-4 py-6 lg:py-4 xl:py-10"
                     variants={staggerContainer}
                     initial="hidden"
                     animate="show"
@@ -191,7 +191,7 @@ useEffect(() => {
                             alt={`Flower Left ${idx}`}
                             width={flower.width}
                             height={flower.height}
-                            className="" 
+                            className="lg:scale-75 xl:scale-[0.85] 2xl:scale-100"
                         />
                     </motion.div>
                     ))}
@@ -214,6 +214,7 @@ useEffect(() => {
                             alt={`Flower Right ${idx}`}
                             width={flower.width}
                             height={flower.height}
+                            className="lg:scale-90 xl:scale-100 2xl:scale-110"
                         />
                     </motion.div>
                     ))}
@@ -221,7 +222,7 @@ useEffect(() => {
 
                 {/* Kartu utama */}
                 <motion.div
-                    className="absolute z-10 top-1/2 left-1/2 w-[92%] max-w-md -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-white/90 px-4 py-8 pt-24 shadow-xl sm:max-w-lg sm:px-10 sm:py-12 sm:pt-32"
+                    className="absolute z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[92%] sm:w-[80%] max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl 2xl:max-w-3xl rounded-2xl bg-white/90 px-4 py-6 pt-20 sm:px-8 sm:py-10 sm:pt-28 lg:px-8 lg:py-8 lg:pt-24 xl:px-10 xl:py-10 xl:pt-28 shadow-xl"
                     variants={staggerContainer}
                     initial="hidden"
                     animate="show"
@@ -229,7 +230,7 @@ useEffect(() => {
                     
                     <motion.div
                         variants={fadeUp}
-                        className="absolute top-6 left-1/2 w-32 sm:w-[50%] -translate-x-1/2 -translate-y-[60%]"
+                        className="absolute top-6 left-1/2 w-28 sm:w-32 md:w-36 lg:w-44 -translate-x-1/2 -translate-y-[60%]"
                     >
                         <Image
                             src="/frame_oval.png"
@@ -240,38 +241,38 @@ useEffect(() => {
                         />
                     </motion.div>
 
-                    <motion.p variants={fadeUp} className="mb-4 text-sm text-gray-700 lg:mb-10">
+                    <motion.p variants={fadeUp} className="mb-4 text-xs sm:text-sm text-gray-700">
                         We invite you to the wedding of
                     </motion.p>
 
                     <motion.h1
                         variants={fadeUp}
-                        className={`${greatVibes.className} mb-2 text-6xl text-lime-900 lg:text-7xl`}
+                        className={`${greatVibes.className} mb-1 text-5xl lg:text-6xl xl:text-7xl text-lime-900`}
                     >
                         Hizkia
                     </motion.h1>
 
                     <motion.h3
                         variants={fadeUp}
-                        className={`${greatVibes.className} mb-2 text-4xl text-lime-900`}
+                        className={`${greatVibes.className} mb-1 text-3xl lg:text-4xl text-lime-900`}
                     >
                         &
                     </motion.h3>
 
                     <motion.h2
                         variants={fadeUp}
-                        className={`${greatVibes.className} mb-4 text-6xl text-lime-900 lg:text-7xl`}
+                        className={`${greatVibes.className} mb-3 text-5xl lg:text-6xl xl:text-7xl text-lime-900`}
                     >
                         Yushellia
                     </motion.h2>
 
-                    <motion.p variants={fadeUp} className="mb-6 text-sm text-gray-600 sm:text-base">
+                    <motion.p variants={fadeUp} className="mb-4 text-xs sm:text-sm text-gray-600">
                         Saturday, January 1, 2025
                     </motion.p>
 
-                    <motion.div variants={fadeUp} className="mb-6">
-                        <p className="text-sm text-black">Dear</p>
-                        <p className="text-lg font-semibold text-black">{guestName}</p>
+                    <motion.div variants={fadeUp} className="mb-4">
+                        <p className="text-xs lg:text-sm text-black">Dear</p>
+                        <p className="text-lg lg:text-xl font-semibold text-black">{guestName}</p>
                     </motion.div>
 
                     <motion.div variants={fadeUp}>
