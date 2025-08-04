@@ -103,40 +103,40 @@ const Front = () => {
     // const [guestAddress, setGuestAddress] = useState("");
 
     useEffect(() => {
-    const slugParam = searchParams.get("to");
-    if (slugParam) {
-        setGuestSlug(slugParam);
-    }
-}, [searchParams]);
-
-useEffect(() => {
-    if (!guestSlug) return;
-
-    const fetchGuest = async () => {
-        try {
-            const nameFromSlug = guestSlug.toLowerCase();
-
-            const res = await fetch(`https://uu.seketik.com/api/rsvp`);
-            if (!res.ok) throw new Error("Gagal ambil data tamu");
-
-            const data: { name: string }[] = await res.json();
-
-            const guest = data.find(
-                (item) => toSlug(item.name) === nameFromSlug
-            );
-
-            if (guest) {
-                setGuestName(guest.name);
-            } else {
-                setGuestName(nameFromSlug); // fallback
-            }
-        } catch (err) {
-            console.log("Gagal ambil data tamu", err);
+        const slugParam = searchParams.get("to");
+        if (slugParam) {
+            setGuestSlug(slugParam);
         }
-    };
+    }, [searchParams]);
 
-    fetchGuest();
-}, [guestSlug]);
+    useEffect(() => {
+        if (!guestSlug) return;
+
+        const fetchGuest = async () => {
+            try {
+                const nameFromSlug = guestSlug.toLowerCase();
+
+                const res = await fetch(`https://uu.seketik.com/api/rsvp`);
+                if (!res.ok) throw new Error("Gagal ambil data tamu");
+
+                const data: { name: string }[] = await res.json();
+
+                const guest = data.find(
+                    (item) => toSlug(item.name) === nameFromSlug
+                );
+
+                if (guest) {
+                    setGuestName(guest.name);
+                } else {
+                    setGuestName(nameFromSlug); // fallback
+                }
+            } catch (err) {
+                console.log("Gagal ambil data tamu", err);
+            }
+        };
+
+        fetchGuest();
+    }, [guestSlug]);
 
 
 
