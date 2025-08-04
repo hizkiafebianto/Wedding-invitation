@@ -40,7 +40,7 @@ const flowerDecorations = [
     src: '/png2/8.png',
     width: 220,
     height: 220,
-    className: 'absolute -bottom-32 animate-sway -right-16 z-0',
+    className: 'absolute -bottom-32 animate-sway -right-28 z-0',
     direction: 'left',
     delay: '0s'
   },
@@ -48,7 +48,7 @@ const flowerDecorations = [
     src: '/png2/7.png',
     width: 200,
     height: 200,
-    className: 'absolute -bottom-20 animate-sway -right-24 z-0',
+    className: 'absolute -bottom-20 animate-sway -right-28 z-0',
     direction: 'left',
     delay: '0.4s'
   },
@@ -150,6 +150,7 @@ export const EventSection = () => {
                                 alt="Flower Event"
                                 width={flower.width}
                                 height={flower.height}
+                                className="opacity-50"
                             />
                         </motion.div>
                     ))}
@@ -168,7 +169,7 @@ export const EventSection = () => {
                         initial="hidden"
                         whileInView="show"
                         viewport={{ once: false, amount: 0.3 }} 
-                        className="flex justify-center"
+                        className="flex justify-center mt-24"
                     >
                         <Image
                             src={event.iconSrc}
@@ -228,10 +229,11 @@ export const EventSection = () => {
 
                     <Link href={event.mapUrl} target="_blank" rel="noopener noreferrer">
                         <motion.div
-                            variants={createDelayVariants('bottom')}
+                            variants={createDelayVariants('right')}
                             initial="hidden"
                             whileInView="show"
                             viewport={{ once: false, amount: 0.3 }}
+                            className="relative z-20"
                         >
                             <Button
                                 variant="secondary"

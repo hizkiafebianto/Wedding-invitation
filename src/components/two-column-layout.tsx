@@ -13,7 +13,7 @@ export const TwoColumnLayout = ({ children }: Props) => {
     return (
         <div className="flex h-screen w-full overflow-hidden">
             {/* Static Left Side */}
-            <div className="fixed top-0 left-0 z-0 hidden h-full w-8/12 md:block">
+            <div className="fixed top-0 left-0 z-0 hidden h-full w-8/12 lg:block">
                 <div className="relative h-full w-full">
                     {/* Background Image */}
                     <Image
@@ -110,7 +110,7 @@ export const TwoColumnLayout = ({ children }: Props) => {
             {/* Scrollable Right Side */}
             <div
                 id="scrollable-right"
-                className="bg-tembok z-10 ml-auto h-screen w-full overflow-y-auto md:w-4/12"
+                className="bg-tembok z-10 ml-auto h-screen w-full overflow-y-auto lg:w-4/12"
             >
                 {children}
             </div>

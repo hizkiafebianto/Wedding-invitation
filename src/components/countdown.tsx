@@ -149,8 +149,8 @@ export const Countdown = () => {
                     transition={{ duration: 2 }}
                     className="flex flex-col items-center"
                 >
-                    <div className="h-20 w-20 md:h-24 md:w-24 rounded-full bg-white/80 shadow-md flex items-center justify-center">
-                        <span className={`${greatVibes.className} text-4xl md:text-5xl`}>
+                    <div className="h-16 w-16 md:h-24 md:w-24 rounded-full bg-white/80 shadow-md flex items-center justify-center">
+                        <span className={`${greatVibes.className} text-3xl md:text-5xl`}>
                             {value.toString().padStart(2, '0')}
                         </span>
                     </div>

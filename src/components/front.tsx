@@ -247,7 +247,7 @@ const Front = () => {
 
                     <motion.h1
                         variants={fadeUp}
-                        className={`${greatVibes.className} mb-1 text-5xl lg:text-6xl xl:text-7xl text-lime-900`}
+                        className={`${greatVibes.className} mb-1 text-6xl lg:text-7xl xl:text-8xl text-lime-900`}
                     >
                         Hizkia
                     </motion.h1>
@@ -261,7 +261,7 @@ const Front = () => {
 
                     <motion.h2
                         variants={fadeUp}
-                        className={`${greatVibes.className} mb-3 text-5xl lg:text-6xl xl:text-7xl text-lime-900`}
+                        className={`${greatVibes.className} mb-3 text-6xl lg:text-7xl xl:text-8xl text-lime-900`}
                     >
                         Yushellia
                     </motion.h2>

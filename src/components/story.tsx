@@ -36,7 +36,7 @@ export const OurStory = () => {
     const story = stories[current];
 
     return (
-        <section id="our-story" className="relative z-10 w-full overflow-hidden px-12 py-20 text-center">
+        <section id="our-story" className="relative z-10 w-full overflow-hidden px-4 py-20 text-center">
             <motion.h2 
                 variants={createDelayVariants('bottom')}
                 initial="hidden"
@@ -89,16 +89,16 @@ export const OurStory = () => {
                 {/* Navigasi */}
                 <button
                     onClick={prevStory}
-                    className="absolute top-5/12 left-8 -translate-y-16 transform rounded-full bg-white p-2 shadow hover:bg-lime-300"
+                    className="absolute top-5/12 left-8 -translate-y-16 transform rounded-full bg-white p-2 shadow hover:bg-lime-900"
                 >
-                    <ChevronLeft size={20} className="text-lime-900" />
+                    <ChevronLeft size={20} className="text-lime-900 hover:text-white" />
                 </button>
 
                 <button
                     onClick={nextStory}
-                    className="absolute top-5/12 right-8 -translate-y-16 transform rounded-full bg-white p-2 shadow hover:bg-lime-300"
+                    className="absolute top-5/12 right-8 -translate-y-16 transform rounded-full bg-white p-2 shadow hover:bg-lime-900"
                 >
-                    <ChevronRight size={20} className="text-lime-900" />
+                    <ChevronRight size={20} className="text-lime-900 hover:text-white" />
                 </button>
 
                 {/* Indikator */}

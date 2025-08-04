@@ -10,18 +10,18 @@ const flowers = [
     {
         src: "/png2/4.png",
         alt: "Flower 5",
-        width: 220,
-        height: 220,
+        width: 200,
+        height: 200,
         delay: "0s",
         className: "pointer-events-none absolute top-14 -left-8 z-30",
     },
     {
         src: "/png2/12.png",
         alt: "Flower 12",
-        width: 230,
-        height: 230,
+        width: 200,
+        height: 200,
         delay: "0.4s",
-        className: "pointer-events-none absolute top-[280px] left-24 z-20 -rotate-15 lg:rotate-0 lg:top-[300px]",
+        className: "pointer-events-none absolute top-[280px] left-24 z-20 lg:rotate-0 lg:top-[300px]",
     },
     {
         src: "/png2/10.png",
@@ -69,13 +69,13 @@ const flowers = [
         width: 50,
         height: 50,
         delay: "1.2s",
-        className: "pointer-events-none absolute animate-sway right-52 top-64 z-10 lg:left-56",
+        className: "pointer-events-none absolute animate-sway right-32 top-64 z-10 lg:left-56",
     },
     {
         src: "/png2/5.png",
         alt: "Flower 7",
-        width: 100,
-        height: 100,
+        width: 90,
+        height: 90,
         delay: "0s",
         className: "pointer-events-none animate-sway absolute left-32 top-56 z-10",
     },
@@ -85,7 +85,7 @@ const flowers = [
         width: 130,
         height: 130,
         delay: "0.4s",
-        className: "pointer-events-none absolute animate-sway -right-6 top-52 z-20",
+        className: "pointer-events-none absolute animate-sway -right-12 top-52 z-20",
     },
     {
         src: "/png2/7.png",
@@ -93,7 +93,7 @@ const flowers = [
         width: 200,
         height: 200,
         delay: "0.8s",
-        className: "pointer-events-none absolute animate-sway -right-8 top-20 z-20",
+        className: "pointer-events-none absolute animate-sway -right-24 top-28 z-20",
     },
     {
         src: "/png2/9.png",
@@ -101,7 +101,7 @@ const flowers = [
         width: 110,
         height: 110,
         delay: "1.2s",
-        className: "pointer-events-none absolute animate-sway -right-12 -top-24 z-20 -rotate-35",
+        className: "pointer-events-none absolute animate-sway -right-28 -top-24 z-20 -rotate-35",
     },
     {
         src: "/png2/9.png",
@@ -109,7 +109,7 @@ const flowers = [
         width: 120,
         height: 120,
         delay: "0s",
-        className: "pointer-events-none absolute animate-sway -right-8 -top-28 z-10",
+        className: "pointer-events-none absolute animate-sway -right-12 -top-28 z-10",
     },
 ];
 

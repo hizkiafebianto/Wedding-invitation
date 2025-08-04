@@ -41,7 +41,7 @@ export const GiftSection = () => {
   };
 
     return (
-        <section id="gift" className="relative px-4 py-16 text-center text-lime-900">
+        <section id="gift" className="relative px-4 pb-16 text-center text-lime-900">
         <motion.div
             variants={createDelayVariants("bottom")}
             initial="hidden"

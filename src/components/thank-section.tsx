@@ -8,8 +8,8 @@ import { createDelayVariants } from '@/utils/animations';
 const flowerDecorations = [
     {
         src: '/png2/8.png',
-        width: 220,
-        height: 220,
+        width: 200,
+        height: 200,
         className: 'absolute bottom-32 animate-sway -right-16 z-0',
         direction: 'left',
         delay: '0s'
@@ -32,9 +32,9 @@ const flowerDecorations = [
     },
     {
         src: '/png/8.png',
-        width: 220,
-        height: 220,
-        className: 'absolute -bottom-44 animate-sway -left-20 z-0',
+        width: 200,
+        height: 200,
+        className: 'absolute -bottom-44 animate-sway -left-16 z-0',
         direction: 'right',
         delay: '1.2s'
     },
@@ -69,6 +69,7 @@ export const ThankSection = () => {
                         alt="Flower Event"
                         width={flower.width}
                         height={flower.height}
+                        className="opacity-50"
                     />
                 </motion.div>
             ))}

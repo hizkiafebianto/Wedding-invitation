@@ -36,7 +36,7 @@ export const Hero = () => {
                         alt="Bunga Atas"
                         width={500}
                         height={500}
-                        className="w-full"
+                        className="w-full md:w-[900px]"
                     />
                 </motion.div>
                 
@@ -45,14 +45,14 @@ export const Hero = () => {
                         initial="hidden"
                         whileInView="show"
                         viewport={{ once: false, amount: 0.3 }}
-                        className="absolute top-36 -right-24"
+                        className="absolute top-28 lg:top-44 md:top-60 -right-24"
                     >
                         <Image
                             src="/png/2.png"
-                            alt="Bunga kiri"
-                            width={170}
-                            height={170}
-                            className="h-auto -rotate-20 lg:w-48 animate-sway"
+                            alt="Bunga Kanan"
+                            width={150}
+                            height={150}
+                            className="h-auto -rotate-20 md:w-48 animate-sway"
                             style={{ animationDelay: getRandomDelay() }}
                         />
                     </motion.div>
@@ -62,14 +62,14 @@ export const Hero = () => {
                         initial="hidden"
                         whileInView="show"
                         viewport={{ once: false, amount: 0.3 }}
-                        className="absolute top-36 -left-24"
+                        className="absolute top-28 lg:top-44 md:top-60 -left-24"
                     >
                         <Image
                             src="/png/3.png"
                             alt="Bunga kiri"
-                            width={170}
-                            height={170}
-                            className="h-auto rotate-20 lg:w-48 animate-sway"
+                            width={150}
+                            height={150}
+                            className="h-auto rotate-20 md:w-48 animate-sway"
                             style={{ animationDelay: getRandomDelay() }}
                         />
                     </motion.div>
@@ -93,7 +93,7 @@ export const Hero = () => {
             </div>
 
             {/* Foto Couple & Nama */}
-            <div className="relative z-30 mx-auto -mt-16 mb-8 flex aspect-[3/4] w-full max-w-[480px] flex-col items-center justify-end overflow-hidden">
+            <div className="relative z-0 mx-auto -mt-16 mb-8 flex aspect-[3/4] w-full max-w-[480px] flex-col items-center justify-end overflow-hidden">
                 <motion.div
                     variants={createDelayVariants('bottom')}
                     initial="hidden"
